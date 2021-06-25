@@ -7,34 +7,35 @@ using System.Threading.Tasks;
 namespace ProyectoDSIPPAI.Clases.Entidades
 {
     public class Sede        
-        {
-            private int cant_maxima_visitantes;
-            private int cant_max_por_guia;
+    {
+            private int cantidadMaximaVisitntes;
+            private int cantMaxPorGuia;
             private string nombre;
-            private List <Tarifa>tarifas;
+            private List<Tarifa>tarifas;
             private List<Exposicion>exposiciones;
 
-        public Sede(int Cant_maxima_visitantes, int Cant_max_por_guia, string Nombre, List<Tarifa> Tarifas, List<Exposicion> Exposiciones)
-        {
-                this.cant_maxima_visitantes = cant_maxima_visitantes;
-                this.cant_max_por_guia = cant_max_por_guia;
+            public Sede(int cantidadMaximaVisitntes, int cantMaxPorGuia, string nombre, List<Tarifa> tarifas, List<Exposicion> exposiciones)
+            {
+                this.cantidadMaximaVisitntes = cantidadMaximaVisitntes;
+                this.cantMaxPorGuia = cantMaxPorGuia;
                 this.nombre = nombre;
                 this.tarifas = tarifas;
                 this.exposiciones = exposiciones;
             }
+            
             public Sede()
             {
 
             }
-            public int Cant_maxima_visitantes
+            public int CantidadMaximaVisitntes
             {
-                get => cant_maxima_visitantes;
-                set => cant_maxima_visitantes = value;
+                get => cantidadMaximaVisitntes;
+                set => cantidadMaximaVisitntes = value;
             }
-            public int Cant_max_por_guia
+            public int CantMaxPorGuia
             {
-                get => cant_max_por_guia;
-                set => cant_max_por_guia = value;
+                get => cantMaxPorGuia;
+                set => cantMaxPorGuia = value;
             }
             public string Nombre
             {
@@ -52,6 +53,54 @@ namespace ProyectoDSIPPAI.Clases.Entidades
                 set => exposiciones = value;
             }
 
+             // EN EL DIAGR. DE CLASES ESTÁ COMO  getCantidadMaximaVisitntes()
+            public int mostrarCantidadMaximaVisitantes()
+            {
+                return this.cantidadMaximaVisitntes;
+            }
+ 
 
-        }
+            public List<List<string>> obtenerTarifasVigentes()
+            {
+                List<List<string>> tarifasVigentes = new List<List<string>>();
+                for (int i = 0; i < this.tarifas.Count; i++)
+                {
+                    // ALTERNATIVAS
+                    // if (Tarifa.mostrar_montos_vigentes() != List<string>())
+                    //if (Tarifa.mostrar_montos_vigentes().Count() == 0)
+
+                    List<string> montosVigentes = this.tarifas[i].mostrar_montos_vigentes();
+                    if (montosVigentes.Count() != 0)
+                    {
+                        tarifasVigentes.Add(montosVigentes);
+                    }
+                    else
+                    {    
+                    }
+                }
+                return tarifasVigentes;
+            }
+
+            public int calcularDuracionExposicionesVigentes()
+            {
+                int duracionExpoVigentes = 0;
+                for (int i = 0; i < this.exposiciones.Count; i++)
+                {
+                    bool vigencia = this.exposiciones[i].EsVigente();
+                    if (vigencia == true)
+                    {
+                        duracionExpoVigentes += this.exposiciones[i].CalcularDuracionObrasExpuestas();
+                    }
+                    else
+                    {
+                    }
+                }
+
+                return duracionExpoVigentes;
+
+            }
+
+
     }
+}
+    

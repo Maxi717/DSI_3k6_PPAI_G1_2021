@@ -10,7 +10,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
     {
         public string nombre { get; set; }
 
-        public string conocer_nombre()
+        public string ConocerNombre()
         {
             return nombre;
         }

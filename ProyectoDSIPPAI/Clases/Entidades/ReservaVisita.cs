@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace ProyectoDSIPPAI.Clases.Entidades
 {
-    public class ReservaVisita
-    {
         public class ReservaVisita
         {
             private int cantidad_alumnos;
@@ -84,4 +82,3 @@ namespace ProyectoDSIPPAI.Clases.Entidades
             }
         }
     }
-}

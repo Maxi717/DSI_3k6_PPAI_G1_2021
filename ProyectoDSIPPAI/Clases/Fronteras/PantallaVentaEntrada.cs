@@ -59,7 +59,16 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
 
         private void btnCantidadEntradas_Click(object sender, EventArgs e)
         {
-            gestor.CantidadEntradasAEmitir();
+            if(txtCantidad.Text.Equals(""))
+            {
+                MessageBox.Show("Por favor ingrese alguna cantidad de entradas");
+            }
+            else
+            {
+                int cantidad = int.Parse(txtCantidad.Text);
+                gestor.CantidadEntradasAEmitir(cantidad);
+            }
+            
         }
 
         public void MostrarDetalleEntradas()
@@ -67,7 +76,7 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             
             grdDetalle.Visible = true;
 
-
+            
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)

@@ -28,8 +28,9 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
 
             }
             else
-            {                
-                gestor.TomarTarifasSeleccionadas(this);
+            {
+                DataGridViewSelectedRowCollection tarifas = grdTarifas.SelectedRows;
+                gestor.TomarTarifasSeleccionadas(this, tarifas);
                 
             }
 
@@ -46,7 +47,7 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
 
         private void PantallaVentaEntrada_Load(object sender, EventArgs e)
         {
-            gestor.OpcionVentaEntradas();
+            gestor.OpcionVentaEntradas(this, null);
         }
 
         public void SeleccionarCantidadEntradas()

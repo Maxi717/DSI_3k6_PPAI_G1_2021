@@ -36,17 +36,17 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             this.Guia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblTarifas = new System.Windows.Forms.Label();
             this.btnTomarTarifa = new System.Windows.Forms.Button();
-            this.txtCantidad = new System.Windows.Forms.TextBox();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.btnCantidadEntradas = new System.Windows.Forms.Button();
             this.grdDetalle = new System.Windows.Forms.DataGridView();
-            this.lblDetalle = new System.Windows.Forms.Label();
             this.NumeroEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoDeVisita = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TieneGuia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblDetalle = new System.Windows.Forms.Label();
             this.btnConfirmar = new System.Windows.Forms.Button();
+            this.txtCantidad = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdTarifas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdDetalle)).BeginInit();
             this.SuspendLayout();
@@ -111,14 +111,6 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             this.btnTomarTarifa.Visible = false;
             this.btnTomarTarifa.Click += new System.EventHandler(this.btnTomarTarifa_Click);
             // 
-            // txtCantidad
-            // 
-            this.txtCantidad.Location = new System.Drawing.Point(155, 330);
-            this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(100, 20);
-            this.txtCantidad.TabIndex = 3;
-            this.txtCantidad.Visible = false;
-            // 
             // lblCantidad
             // 
             this.lblCantidad.AutoSize = true;
@@ -155,16 +147,6 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             this.grdDetalle.TabIndex = 6;
             this.grdDetalle.Visible = false;
             // 
-            // lblDetalle
-            // 
-            this.lblDetalle.AutoSize = true;
-            this.lblDetalle.Location = new System.Drawing.Point(41, 378);
-            this.lblDetalle.Name = "lblDetalle";
-            this.lblDetalle.Size = new System.Drawing.Size(84, 13);
-            this.lblDetalle.TabIndex = 7;
-            this.lblDetalle.Text = "Detalle entradas";
-            this.lblDetalle.Visible = false;
-            // 
             // NumeroEntrada
             // 
             this.NumeroEntrada.HeaderText = "Numero";
@@ -190,9 +172,19 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             this.TieneGuia.HeaderText = "Column1";
             this.TieneGuia.Name = "TieneGuia";
             // 
+            // lblDetalle
+            // 
+            this.lblDetalle.AutoSize = true;
+            this.lblDetalle.Location = new System.Drawing.Point(41, 378);
+            this.lblDetalle.Name = "lblDetalle";
+            this.lblDetalle.Size = new System.Drawing.Size(84, 13);
+            this.lblDetalle.TabIndex = 7;
+            this.lblDetalle.Text = "Detalle entradas";
+            this.lblDetalle.Visible = false;
+            // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(621, 435);
+            this.btnConfirmar.Location = new System.Drawing.Point(624, 446);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(75, 23);
             this.btnConfirmar.TabIndex = 8;
@@ -200,17 +192,26 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
+            // txtCantidad
+            // 
+            this.txtCantidad.Location = new System.Drawing.Point(155, 328);
+            this.txtCantidad.Mask = "99999";
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(100, 20);
+            this.txtCantidad.TabIndex = 9;
+            this.txtCantidad.ValidatingType = typeof(int);
+            // 
             // PantallaVentaEntrada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(977, 520);
+            this.Controls.Add(this.txtCantidad);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.lblDetalle);
             this.Controls.Add(this.grdDetalle);
             this.Controls.Add(this.btnCantidadEntradas);
             this.Controls.Add(this.lblCantidad);
-            this.Controls.Add(this.txtCantidad);
             this.Controls.Add(this.btnTomarTarifa);
             this.Controls.Add(this.lblTarifas);
             this.Controls.Add(this.grdTarifas);
@@ -233,7 +234,6 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
         private System.Windows.Forms.DataGridViewTextBoxColumn Guia;
         private System.Windows.Forms.Label lblTarifas;
         private System.Windows.Forms.Button btnTomarTarifa;
-        private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.Button btnCantidadEntradas;
         private System.Windows.Forms.DataGridView grdDetalle;
@@ -244,5 +244,6 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
         private System.Windows.Forms.DataGridViewTextBoxColumn TieneGuia;
         private System.Windows.Forms.Label lblDetalle;
         private System.Windows.Forms.Button btnConfirmar;
+        private System.Windows.Forms.MaskedTextBox txtCantidad;
     }
 }

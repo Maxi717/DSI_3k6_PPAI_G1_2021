@@ -11,10 +11,10 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         private DateTime caducidad;
         private string nombre;
         private string contra;
-        private int empleado;
+        private Empleado empleado;
 
 
-        public Usuario(DateTime caducidad, string nombre, string contra, int empleado)
+        public Usuario(DateTime caducidad, string nombre, string contra, Empleado empleado)
         {
             this.caducidad = caducidad;
             this.nombre = nombre;
@@ -40,10 +40,15 @@ namespace ProyectoDSIPPAI.Clases.Entidades
             get => contra;
             set => contra = value;
         }
-        public int Empleado
+        public Empleado Empleado
         {
             get => empleado;
             set => empleado = value;
+        }
+
+        public Empleado ObtenerEmpleado()
+        {
+            return this.empleado;
         }
 
     }

@@ -43,7 +43,7 @@ namespace ProyectoDSIPPAI.Clases.Gestores
             return tarifasVigentes;
         }
 
-        public void TomarTarifasSeleccionadas()
+        public void TomarTarifasSeleccionadas(PantallaVentaEntrada pantalla)
         {
 
 

@@ -30,7 +30,7 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             else
             {
                 DataGridViewSelectedRowCollection tarifas = grdTarifas.SelectedRows;
-                gestor.TomarTarifasSeleccionadas(this, tarifas);
+                //gestor.TomarTarifasSeleccionadas(this, tarifas);
                 
             }
 
@@ -67,7 +67,7 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             else
             {
                 int cantidad = int.Parse(txtCantidad.Text);
-                gestor.CantidadEntradasAEmitir(cantidad);
+               // gestor.CantidadEntradasAEmitir(cantidad);
             }
             
         }
@@ -82,7 +82,7 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            gestor.TomarConfirmacionVenta();
+            //gestor.TomarConfirmacionVenta();
         }
     }
 }

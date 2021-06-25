@@ -15,14 +15,14 @@ namespace ProyectoDSIPPAI.Clases.Gestores
         private Usuario usuario;
 
 
-        public void OpcionVentaEntradas(PantallaVentaEntrada pantalla, Sesion sesion)
+        public void opcionventaentradas(PantallaVentaEntrada pantalla, Sesion sesion)
         {
             this.logueadoEmpleado = BuscarEmpleadoLogeado(sesion);
             BuscarSede();
-            List<Tarifa> tarifas = BuscarTarifasDeSede();
+            List<Tarifa> tarifas = BuscarTarifaDeSede();
             pantalla.MostrarTarifasVigentes();
         }
-        
+
         private Empleado BuscarEmpleadoLogeado(Sesion sesion)
         {
             Empleado empleado = sesion.GetEmpleadoEnSesion();

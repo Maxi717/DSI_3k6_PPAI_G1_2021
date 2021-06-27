@@ -12,6 +12,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         private DateTime fecha_inicio;
         private DateTime hora_fin;
         private DateTime hora_inicio;
+        private Usuario usuario;
 
 
         public Sesion(DateTime fecha_fin, DateTime fecha_inicio, DateTime hora_fin, DateTime hora_inicio)
@@ -46,6 +47,14 @@ namespace ProyectoDSIPPAI.Clases.Entidades
             set => hora_inicio = value;
         }
 
-
+        public Usuario conocer_usuario()
+        {
+            return usuario.getUsuario();
+        }
+        
+        public string get_empleado_en_sesion()
+        {
+            return usuario.conocer_empleado();
+        }
     }
 }

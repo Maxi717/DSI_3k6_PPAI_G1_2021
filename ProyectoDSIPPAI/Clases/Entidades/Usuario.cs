@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoDSIPPAI.Clases.Entidades
 {
-    class Usuario
+    public class Usuario
     {
         private DateTime caducidad;
         private string nombre;

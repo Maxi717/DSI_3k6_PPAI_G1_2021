@@ -12,7 +12,6 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         TimeSpan horaVenta;
         int numero;
         float monto;
-
         Sede sede;
         Tarifa tarifa;
 

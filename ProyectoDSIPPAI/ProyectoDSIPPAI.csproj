@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccesoADatos\ADEntradas.cs" />
+    <Compile Include="AccesoADatos\ADReservaVisita.cs" />
     <Compile Include="Clases\Entidades\DetalleExposicion.cs" />
     <Compile Include="Clases\Entidades\Empleado.cs" />
     <Compile Include="Clases\Entidades\Entrada.cs" />

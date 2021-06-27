@@ -28,7 +28,7 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
 
             }
             else
-            {                
+            {
                 gestor.TomarTarifasSeleccionadas(this);
                 
             }
@@ -36,11 +36,16 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
         }
 
 
-        public void MostrarTarifasVigentes()
+        public void MostrarTarifasVigentes(List<Tarifa> tarifas)
         {
             lblTarifas.Visible = true;
             grdTarifas.Visible = true;
-            btnTomarTarifa.Visible = true;
+            //btnTomarTarifa.Visible = true;
+
+            foreach (var tarifa in tarifas)
+            {
+
+            }
 
         }
 
@@ -71,17 +76,35 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             
         }
 
-        public void MostrarDetalleEntradas()
+        public void MostrarDetalleEntradas(DataTable detalle_entradas, int numero_entrada)
         {
-            
             grdDetalle.Visible = true;
 
-            
+            grdDetalle.Rows.Add(numero_entrada, detalle_entradas.Rows[0][1].ToString(), detalle_entradas.Rows[0][2].ToString(), detalle_entradas.Rows[0][3].ToString(), detalle_entradas.Rows[0][4].ToString());
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             gestor.TomarConfirmacionVenta();
         }
+
+        private DataTable grdTarifas_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnTomarTarifa.Visible = true;
+            int indice = e.RowIndex;
+            DataGridViewRow tarifaSeleccionada = grdTarifas.Rows[indice];
+            string nombre_tarifa = tarifaSeleccionada.Cells["Nombre"].Value.ToString();
+            string tipo_visita = tarifaSeleccionada.Cells["TipoVisita"].Value.ToString();
+            string tipo_entrada = tarifaSeleccionada.Cells["TipoEntrada"].Value.ToString();
+            string guia = tarifaSeleccionada.Cells["Guia"].Value.ToString();
+
+            DataTable detalle_entradas = new DataTable();
+            detalle_entradas.Rows[0][1] = nombre_tarifa;
+            detalle_entradas.Rows[0][2] = tipo_visita;
+            detalle_entradas.Rows[0][3] = tipo_entrada;
+            detalle_entradas.Rows[0][4] = guia;
+            return detalle_entradas;
+        }
+
     }
 }

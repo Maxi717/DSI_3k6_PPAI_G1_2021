@@ -3,3 +3,10 @@ D:\Escritorio\Cosas de la facu\tercero\DSI\DSI_3k6_PPAI_G1_2021\ProyectoDSIPPAI\
 D:\Escritorio\Cosas de la facu\tercero\DSI\DSI_3k6_PPAI_G1_2021\ProyectoDSIPPAI\obj\Debug\ProyectoDSIPPAI.Properties.Resources.resources
 D:\Escritorio\Cosas de la facu\tercero\DSI\DSI_3k6_PPAI_G1_2021\ProyectoDSIPPAI\obj\Debug\ProyectoDSIPPAI.csproj.GenerateResource.cache
 D:\Escritorio\Cosas de la facu\tercero\DSI\DSI_3k6_PPAI_G1_2021\ProyectoDSIPPAI\obj\Debug\ProyectoDSIPPAI.csproj.CoreCompileInputs.cache
+C:\Users\Maxi\Documents\GitHub\DSI_3k6_PPAI_G1_2021\ProyectoDSIPPAI\obj\Debug\ProyectoDSIPPAI.csprojAssemblyReference.cache
+C:\Users\Maxi\Documents\GitHub\DSI_3k6_PPAI_G1_2021\ProyectoDSIPPAI\obj\Debug\ProyectoDSIPPAI.Clases.Fronteras.PantallaVentaEntrada.resources
+C:\Users\Maxi\Documents\GitHub\DSI_3k6_PPAI_G1_2021\ProyectoDSIPPAI\obj\Debug\ProyectoDSIPPAI.Properties.Resources.resources
+C:\Users\Maxi\Documents\GitHub\DSI_3k6_PPAI_G1_2021\ProyectoDSIPPAI\obj\Debug\ProyectoDSIPPAI.csproj.GenerateResource.cache
+C:\Users\Maxi\Documents\GitHub\DSI_3k6_PPAI_G1_2021\ProyectoDSIPPAI\obj\Debug\ProyectoDSIPPAI.csproj.CoreCompileInputs.cache
+C:\Users\Maxi\Documents\GitHub\DSI_3k6_PPAI_G1_2021\ProyectoDSIPPAI\obj\Debug\RdlCompile.cache
+C:\Users\Maxi\Documents\GitHub\DSI_3k6_PPAI_G1_2021\ProyectoDSIPPAI\obj\Debug\RdlCompile.compiled

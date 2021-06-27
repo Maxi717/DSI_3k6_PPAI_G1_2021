@@ -16,16 +16,70 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         Sede sede;
         Tarifa tarifa;
 
-        public int GetNumero 
+        public int GetNumero
         {
             get => numero;
+        }
+
+        public int SetNumero
+        {
             set => numero = value;
         }
 
         public Sede GetSede
         {
             get => sede;
+
+        }
+
+        public Sede SetSede
+        {
             set => sede = value;
+
+        }
+
+        public DateTime GetFechaVenta
+        {
+            get => fechaVenta.Date;
+
+        }
+
+        public DateTime SetFechaVenta
+        { 
+            set => fechaVenta = value;
+
+        }
+
+        public TimeSpan GetHoraVenta
+        {
+            get => fechaVenta.TimeOfDay;
+        }
+
+        public TimeSpan SetHoraVenta
+        {
+            set => horaVenta = value;
+
+        }
+
+        public Tarifa GetTarifa
+        {
+            get => tarifa;
+        }
+
+        public Tarifa SetTarifa
+        {
+            set => tarifa = value;
+
+        }
+
+        public float GetMonto
+        {
+            get => monto;
+        }
+
+        public float SetMonto
+        {
+            set => monto = value;
 
         }
 

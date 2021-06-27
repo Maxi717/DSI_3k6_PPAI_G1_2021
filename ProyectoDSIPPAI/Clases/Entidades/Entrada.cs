@@ -8,13 +8,13 @@ namespace ProyectoDSIPPAI.Clases.Entidades
 {
     public class Entrada
     {
-        DateTime fechaVenta;
-        TimeSpan horaVenta;
-        int numero;
-        float monto;
+        private DateTime fechaVenta;
+        private TimeSpan horaVenta;
+        private int numero;
+        private float monto;
 
-        Sede sede;
-        Tarifa tarifa;
+        private Sede sede;
+        private Tarifa tarifa;
 
         public int GetNumero
         {

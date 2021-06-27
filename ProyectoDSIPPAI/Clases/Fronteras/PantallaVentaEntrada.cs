@@ -8,15 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProyectoDSIPPAI.Clases.Entidades;
 
 namespace ProyectoDSIPPAI.Clases.Fronteras
 {
     public partial class PantallaVentaEntrada : Form
     {
-        GestorVentaEntrada gestor = new GestorVentaEntrada();
-        public PantallaVentaEntrada()
+
+        public PantallaVentaEntrada(Sesion sesion)
         {
             InitializeComponent();
+            GestorVentaEntrada gestor = new GestorVentaEntrada();
+            gestor.OpcionVentaEntradas(this, sesion);
         }
 
         private void btnTomarTarifa_Click(object sender, EventArgs e)

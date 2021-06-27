@@ -8,12 +8,12 @@ namespace ProyectoDSIPPAI.Clases.Entidades
 {
     public class Tarifa
     {
-        public DateTime fechaFinVigencia { get; set; }
-        public DateTime fechaInicioVigencia { get; set; }
-        public int monto { get; set; }
-        public int montoAdicionalGuia { get; set; }
-        public TipoEntrada tipoEntrada { get; set; }
-        public TipoVisita tipoVisita { get; set; }
+        private DateTime fechaFinVigencia { get; set; }
+        private DateTime fechaInicioVigencia { get; set; }
+        private int monto { get; set; }
+        private int montoAdicionalGuia { get; set; }
+        private TipoEntrada tipoEntrada { get; set; }
+        private TipoVisita tipoVisita { get; set; }
 
         public string ConocerTipoVisita()
         {
@@ -22,7 +22,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
 
         public string ConocerTipoEntrada()
         {
-            return tipoEntrada.mostrarNombre();
+            return tipoEntrada.MostrarNombre();
         }
 
         public List<string> MostrarMontosVigentes()
@@ -40,6 +40,11 @@ namespace ProyectoDSIPPAI.Clases.Entidades
                 List<string> lista = new List<string>();
                 return lista;
             }
+        }
+
+        public DateTime GetFechaFinVigencia()
+        {
+            return this.fechaFinVigencia;
         }
     }
 }

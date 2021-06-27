@@ -31,7 +31,8 @@ namespace ProyectoDSIPPAI.Clases.Entidades
 
         public int BuscarDuracionObras()
         {
-            return this.GetObra.GetDuracionResumida();
+            obra = this.GetObra;
+            return obra.GetDuracionResumida();
         }
 
     }

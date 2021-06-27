@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProyectoDSIPPAI.Clases.Fronteras;
+using ProyectoDSIPPAI.Clases.Entidades;
 
 namespace ProyectoDSIPPAI
 {
@@ -16,7 +18,11 @@ namespace ProyectoDSIPPAI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Usuario usuario = new Usuario();
+            Empleado empleado = new Empleado();
+            Sede sede = new Sede();
+            Sesion sesion = new Sesion();
+            Application.Run(new PantallaVentaEntrada(sesion));
         }
     }
 }

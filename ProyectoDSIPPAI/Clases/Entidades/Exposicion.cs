@@ -24,27 +24,26 @@ namespace ProyectoDSIPPAI.Clases.Entidades
             bool resultado = false;
 
             DateTime fechaActual = DateTime.Today;
-            
-            if(fechaFinReplanificada == null)
+
+            if (fechaFinReplanificada == null)
             {
                 if (fechaFin > fechaActual)
                 {
                     resultado = true;
                 }
-
-
             }
             else
             {
-                if(fechaFinReplanificada > fechaActual)
+                if (fechaFinReplanificada > fechaActual)
                 {
                     resultado = true;
                 }
 
+                else
+                {
+                    resultado = false;
+                }
             }
-            
-
-
             return resultado;
         }
 
@@ -54,8 +53,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
 
             foreach (DetalleExposicion detalle in this.detalleExposicion)
             {
-                duracion += detalle.buscar_duracion_obras();
-
+                duracion += detalle.BuscarDuracionObras();
             }
 
             return duracion;

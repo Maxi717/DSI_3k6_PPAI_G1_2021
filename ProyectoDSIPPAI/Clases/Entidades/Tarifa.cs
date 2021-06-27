@@ -8,31 +8,31 @@ namespace ProyectoDSIPPAI.Clases.Entidades
 {
     public class Tarifa
     {
-        public DateTime fecha_fin_vigencia { get; set; }
-        public DateTime fecha_inicio_vigencia { get; set; }
+        public DateTime fechaFinVigencia { get; set; }
+        public DateTime fechaInicioVigencia { get; set; }
         public int monto { get; set; }
-        public int monto_adicional_guia { get; set; }
-        public TipoEntrada tipo_entrada { get; set; }
-        public TipoVisita tipo_visita { get; set; }
+        public int montoAdicionalGuia { get; set; }
+        public TipoEntrada tipoEntrada { get; set; }
+        public TipoVisita tipoVisita { get; set; }
 
-        public string conocer_tipo_visita()
+        public string ConocerTipoVisita()
         {
-            return tipo_visita.mostrar_nombre();
+            return tipoVisita.ConocerNombre();
         }
 
-        public string conocer_tipo_entrada()
+        public string ConocerTipoEntrada()
         {
-            return tipo_visita.tipo_entrada.mostar_nombre();
+            return tipoEntrada.mostrarNombre();
         }
 
-        public List<string> mostrar_montos_vigentes()
+        public List<string> MostrarMontosVigentes()
         {
-            if (fecha_fin_vigencia >= DateTime.now())
+            if (fechaFinVigencia >= DateTime.Now)
             {
                 List<string> lista = new List<string>();
                 lista.Add(monto.ToString());
-                lista.Add(this.conocer_tipo_entrada());
-                lista.Add(this.conocer_tipo_visita());
+                lista.Add(this.ConocerTipoEntrada());
+                lista.Add(this.ConocerTipoVisita());
                 return lista;
             }
             else

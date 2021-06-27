@@ -11,21 +11,27 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         string lugarAsignado;
         Obra obra;
 
-        public string LugarAsignado {
+        public string GetLugarAsignado
+        {
             get => lugarAsignado;
+        }
+        public string SetLugarAsignado
+        { 
             set => lugarAsignado = value;
-
         }
 
-        public Obra Obra
+        public Obra GetObra
         {
             get => obra;
+        }
+        public Obra SetObra
+        {
             set => obra = value;
         }
 
-        public int buscar_duracion_obras()
+        public int BuscarDuracionObras()
         {
-            return this.Obra.GetDuracionResumida();
+            return this.GetObra.GetDuracionResumida();
         }
 
     }

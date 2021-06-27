@@ -21,17 +21,146 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         int telefono;
         Sede sedeDondeTrabaja;
 
-        public string Nombre
+        public string GetNombre
         {
             get => nombre;
+           
+        }
+        public string SetNombre {
+
             set => nombre = value;
         }
-        public string Apellido
+
+        public string GetApellido
         {
             get => apellido;
+
+        }
+        public string SetApellido
+        {
+
             set => apellido = value;
         }
 
+        public int GetCuit
+        {
+            get => cuit;
+
+        }
+        public int SetCuit
+        {
+
+            set => cuit = value;
+        }
+
+        public int GetDni
+        {
+            get => dni;
+
+        }
+        public int SetDni
+        {
+
+            set => dni = value;
+        }
+
+        public int GetCodigoValidacion
+        {
+            get => codigoValidacion;
+
+        }
+        public int SetCodigoValidacion
+        {
+
+            set => codigoValidacion = value;
+        }
+
+        public DateTime GetFechaIngreso
+        {
+            get => fechaIngreso;
+
+        }
+        public DateTime SetFechaIngreso
+        {
+
+            set => fechaIngreso = value;
+        }
+
+        public DateTime GetFechaNacimiento
+        {
+            get => fechaNacimiento;
+
+        }
+        public DateTime SetFechaNacimiento
+        {
+
+            set => fechaNacimiento = value;
+        }
+
+
+        public string GetCorreo
+        {
+            get => correo;
+
+        }
+        public string SetCorreo
+        {
+
+            set => correo = value;
+        }
+
+        public string GetSexo
+        {
+            get => sexo;
+
+        }
+        public string SetSexo
+        {
+
+            set => sexo = value;
+        }
+
+        public int GetTelefono
+        {
+            get => telefono;
+
+        }
+        public int SetTelefono
+        {
+
+            set => telefono = value;
+        }
+
+
+
+
+
+        //Creo que un ConocerSede serìa mas correcto en lugar de un get
+        public Sede GetSede
+        {
+            get => sedeDondeTrabaja;
+
+        }
+
+        public Sede SetSede
+        {
+
+            set => sedeDondeTrabaja = value;
+        }
+
+        public string GetDomicilio
+        {
+            get => domicilio;
+
+        }
+        public string SetDomicilio
+        {
+
+            set => domicilio = value;
+        }
+
+
+        // Metodos originales, eliminar aquellos que no tengan referencias
         public int Cuit
         {
             get => cuit;
@@ -97,11 +226,6 @@ namespace ProyectoDSIPPAI.Clases.Entidades
             return this.sedeDondeTrabaja;
         }
 
-
-        public string GetNombre()
-        {
-            return this.nombre;
-        }
 
     }
 }

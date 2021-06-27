@@ -41,9 +41,11 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             viewer.LocalReport.DataSources.Add(ds);
             viewer.LocalReport.Refresh();
             var x = viewer.LocalReport.ListRenderingExtensions();
+
             byte[] viewerPDF = viewer.LocalReport.Render("PDF");
-            //viewer.ExportDialog(x[3]);
             SaveFileDialog dialog = new SaveFileDialog();
+            //PrintDialog dialog = new PrintDialog();
+            //string filename = "entrada" + entrada.GetNumero.ToString()+".pdf";
             dialog.FileName = "entrada" + entrada.GetNumero.ToString() + ".pdf";
             if (dialog.ShowDialog() == DialogResult.OK)
             {

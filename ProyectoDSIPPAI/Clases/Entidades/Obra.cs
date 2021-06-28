@@ -19,6 +19,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         private string nombreObra;
         private float peso;
         private float valuacion;
+        private Empleado empleadoCreo;
 
         public Obra(float alto, float ancho, int codigoSensor, string descripcion, int duracionExtendida, int duracionResumida, DateTime fechaCreacion, DateTime fechaPrimerIngreso, string nombreObra, float peso, float valuacion)
         {
@@ -34,88 +35,70 @@ namespace ProyectoDSIPPAI.Clases.Entidades
             this.peso = peso;
             this.valuacion = valuacion;
         }
-
-        public float Alto
+        public Obra()
         {
 
-            get => alto;
-            set => alto = value;
-
         }
-        public float Ancho
+        public void SetAlto(float nuevoAlto)
         {
-
-            get => ancho;
-            set => ancho = value;
-
+            this.alto = nuevoAlto;
         }
-        public int CodigoSensor
+
+        public void SetEmpleado(Empleado nuevoEmp)
         {
-
-            get => codigoSensor;
-            set => codigoSensor = value;
-
+            this.empleadoCreo = nuevoEmp;
         }
-        public string Descripcion
+
+        public void SetAncho(float nuevoAncho)
         {
-
-            get => descripcion;
-            set => descripcion = value;
-
+            this.ancho = nuevoAncho;
         }
-        public int DuracionExtendida
+        public void SetCodigoSensor(int nuevoCodigoSensor)
         {
-
-            get => duracionExtendida;
-            set => duracionExtendida = value;
-
+            this.codigoSensor = nuevoCodigoSensor;
         }
-        public int DuracionResumida
+        public void SetDescripcion(string nuevaDescripcion)
         {
-
-            get => duracionResumida;
-            set => duracionResumida = value;
-
+            this.descripcion = nuevaDescripcion;
         }
-        public DateTime FechaCreacion
+        public void SetDuracionExtendida(int nuevaDuracionExtendida)
         {
-
-            get => fechaCreacion;
-            set => fechaCreacion = value;
-
+            this.duracionExtendida = nuevaDuracionExtendida;
         }
-        public DateTime FechaPrimerIngreso
+        public void SetDuracionResumida(int nuevaDuracionResumida)
         {
-
-            get => fechaPrimerIngreso;
-            set => fechaPrimerIngreso = value;
-
+            this.duracionResumida = nuevaDuracionResumida;
         }
-        public string NombreObra
+        public void SetFechaCreacion(DateTime nuevaFechaCreacion)
         {
-
-            get => nombreObra;
-            set => nombreObra = value;
-
+            this.fechaCreacion = nuevaFechaCreacion;
         }
-        public float Peso
+        public void SetFechaPrimerIngreso(DateTime nuevaFechaPrimerIngreso)
         {
-
-            get => peso;
-            set => peso = value;
-
+            this.fechaPrimerIngreso = nuevaFechaPrimerIngreso;
         }
-        public float Valuacion
+        public void SetNombreObra(string nuevoNombreObra)
         {
-
-            get => valuacion;
-            set => valuacion = value;
-
+            this.nombreObra = nuevoNombreObra;
         }
-
-        public int GetDuracionResumida()
+        public void SetPeso(float nuevoPeso)
         {
-            return this.duracionResumida;
+            this.peso = nuevoPeso;
         }
+        public void SetValuacion(float nuevaValuacion)
+        {
+            this.valuacion = nuevaValuacion;
+        }
+
+
+
+        public int GetDuracionResumida(Obra obra)
+        {
+            duracionResumida = obra.duracionResumida;
+            return duracionResumida;
+        }
+
+
+
     }
 }

@@ -18,6 +18,52 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         private Empleado empleado;
         private List<DetalleExposicion> detalleExposicion;
 
+        public void SetNombre(string unNombre)
+        {
+            this.nombre = unNombre;
+        }
+
+        public void SetEmpleado(Empleado unEmpleado)
+        {
+            this.empleado = unEmpleado;
+        }
+
+        public void SetDetallesExposicion(List<DetalleExposicion> unaLista)
+        {
+            this.detalleExposicion = unaLista;
+        }
+
+        
+        public void SetFechaFin(DateTime nuevaFecha)
+        {
+            this.fechaFin = nuevaFecha;
+        }
+
+        public void SetFechaFinReplanificada(DateTime nuevaFecha)
+        {
+            this.fechaFinReplanificada = nuevaFecha;
+        }
+
+        public void SetFechaInicio(DateTime nuevaFecha)
+        {
+            this.fechaInicio = nuevaFecha;
+        }
+
+        public void SetFechaInicioReplanificada(DateTime nuevaFecha)
+        {
+            this.fechaInicioReplanificada = nuevaFecha;
+        }
+
+        public void SetHoraApertura(TimeSpan unaHora)
+        {
+            this.horaApertura = unaHora;
+        }
+
+        public void SetHoraCierre(TimeSpan unaHora)
+        {
+            this.horaCierre = unaHora;
+        }
+
 
         public bool EsVigente()
         {

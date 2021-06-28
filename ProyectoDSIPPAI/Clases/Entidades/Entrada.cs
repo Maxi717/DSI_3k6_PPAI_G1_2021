@@ -8,80 +8,58 @@ namespace ProyectoDSIPPAI.Clases.Entidades
 {
     public class Entrada
     {
-        private DateTime fechaVenta;
-        private TimeSpan horaVenta;
-        private int numero;
-        private float monto;
+        DateTime fechaVenta;
+        TimeSpan horaVenta;
+        int numero;
+        float monto;
 
-        private Sede sede;
-        private Tarifa tarifa;
+        Sede sede;
+        Tarifa tarifa;
 
-        public int GetNumero
+        public DateTime GetFechaVenta()
         {
-            get => numero;
-        }
+            return this.fechaVenta;
 
-        public int SetNumero
+        }
+        public void SetFechaVenta(DateTime valor)
         {
-            set => numero = value;
+
+            this.fechaVenta = valor;
         }
 
-        public Sede GetSede
+        public TimeSpan GetHoraVenta()
         {
-            get => sede;
+            return this.horaVenta;
 
         }
-
-        public Sede SetSede
+        public void SetHoraVenta(TimeSpan valor)
         {
-            set => sede = value;
 
+            this.horaVenta = valor;
         }
 
-        public DateTime GetFechaVenta
+        public int GetNumero()
         {
-            get => fechaVenta.Date;
+            return this.numero;
 
         }
-
-        public DateTime SetFechaVenta
-        { 
-            set => fechaVenta = value;
-
-        }
-
-        public TimeSpan GetHoraVenta
+        public void SetNumero(int valor)
         {
-            get => fechaVenta.TimeOfDay;
+
+            this.numero = valor;
         }
 
-        public TimeSpan SetHoraVenta
+        public Sede GetSede()
         {
-            set => horaVenta = value;
+            return this.sede;
 
         }
-
-        public Tarifa GetTarifa
+        public void SetSede(Sede valor)
         {
-            get => tarifa;
+
+            this.sede = valor;
         }
 
-        public Tarifa SetTarifa
-        {
-            set => tarifa = value;
-
-        }
-
-        public float GetMonto
-        {
-            get => monto;
-        }
-
-        public float SetMonto
-        {
-            set => monto = value;
-
-        }
 
         public bool SonDeFechaYHoraSede(Sede sede)
         {
@@ -101,8 +79,4 @@ namespace ProyectoDSIPPAI.Clases.Entidades
             return resultado;
 
         }
-
-
-
     }
-}

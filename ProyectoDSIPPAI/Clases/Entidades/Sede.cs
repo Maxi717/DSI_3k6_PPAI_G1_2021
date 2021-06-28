@@ -27,40 +27,36 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         {
 
         }
-        public int CantidadMaximaVisitntes
+
+        public void SetCantidadMaximaVisitantes(int nuevaCantidadMaxima)
         {
-            get => cantidadMaximaVisitntes;
-            set => cantidadMaximaVisitntes = value;
+            this.cantidadMaximaVisitntes = nuevaCantidadMaxima;
         }
-        public int CantMaxPorGuia
+        public void SetCantMaxPorGuia(int nuevaCantMax)
         {
-            get => cantMaxPorGuia;
-            set => cantMaxPorGuia = value;
+            this.cantMaxPorGuia = nuevaCantMax;
         }
-        public string Nombre
+        public void SetNombre(string nombre)
         {
-            get => nombre;
-            set => nombre = value;
+            this.nombre = nombre;
         }
-        public List<Tarifa> Tarifas
+        public void SetTarifas(List<Tarifa> nuevasTarifas)
         {
-            get => tarifas;
-            set => tarifas = value;
+            this.tarifas = tarifas;
         }
-        public List<Exposicion> Exposiciones
+        public void SetExposiciones(List<Exposicion> nuevaExposiciones)
         {
-            get => exposiciones;
-            set => exposiciones = value;
+            this.exposiciones = exposiciones;
         }
 
         // EN EL DIAGR. DE CLASES ESTÁ COMO  getCantidadMaximaVisitntes()
-        public int mostrarCantidadMaximaVisitantes()
+        public int MostrarCantidadMaximaVisitantes()
         {
             return this.cantidadMaximaVisitntes;
         }
 
 
-        public List<List<string>> obtenerTarifasVigentes()
+        public List<List<string>> ObtenerTarifasVigentes()
         {
             List<List<string>> tarifasVigentes = new List<List<string>>();
             for (int i = 0; i < this.tarifas.Count; i++)
@@ -81,7 +77,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
             return tarifasVigentes;
         }
 
-        public int calcularDuracionExposicionesVigentes()
+        public int CalcularDuracionExposicionesVigentes()
         {
             int duracionExpoVigentes = 0;
             for (int i = 0; i < this.exposiciones.Count; i++)
@@ -99,7 +95,5 @@ namespace ProyectoDSIPPAI.Clases.Entidades
             return duracionExpoVigentes;
 
         }
-
-
     }
 }

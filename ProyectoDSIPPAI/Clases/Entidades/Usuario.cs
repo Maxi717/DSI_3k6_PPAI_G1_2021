@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoDSIPPAI.Clases.Entidades
 {
-    class Usuario
+    public class Usuario
     {
         private DateTime caducidad;
         private string nombre;
@@ -25,25 +25,49 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         {
 
         }
-        public DateTime Caducidad
+
+        public string GetNombre()
         {
-            get => caducidad;
-            set => caducidad = value;
+            return this.nombre;
+
         }
-        public string Nombre
+        public void SetNombre(string valor)
         {
-            get => nombre;
-            set => nombre = value;
+
+            this.nombre = valor;
         }
-        public string Contra
+
+        public DateTime GetCaducidad()
         {
-            get => contra;
-            set => contra = value;
+            return this.caducidad;
+
         }
-        public Empleado Empleado
+        public void SetCaducidad(DateTime valor)
         {
-            get => empleado;
-            set => empleado = value;
+
+            this.caducidad = valor;
+        }
+
+        public string GetContraseña()
+        {
+            return this.contra;
+
+        }
+        public void SetContraseña(string valor)
+        {
+
+            this.contra = valor;
+        }
+
+        public Empleado GetEmpleado()
+        {
+            return this.empleado;
+
+        }
+        public void SetEmpleado(Empleado valor)
+        {
+
+            this.empleado = valor;
         }
 
         public Empleado ObtenerEmpleado()

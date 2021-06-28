@@ -21,212 +21,143 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         int telefono;
         Sede sedeDondeTrabaja;
 
-        public string GetNombre
+
+        public string GetNombre()
         {
-            get => nombre;
+            return this.nombre;
 
         }
-        public string SetNombre
+        public void SetNombre(string valor)
         {
 
-            set => nombre = value;
+            this.nombre = valor;
         }
 
-        public string GetApellido
+        public string GetApellido()
         {
-            get => apellido;
+            return this.apellido;
 
         }
-        public string SetApellido
+        public void SetApellido(string apellido)
         {
 
-            set => apellido = value;
+            this.apellido = apellido;
         }
 
-        public int GetCuit
+        public int GetCuit()
         {
-            get => cuit;
+            return this.cuit;
 
         }
-        public int SetCuit
+        public void SetCuit(int value)
         {
 
-            set => cuit = value;
+            this.cuit = value;
         }
 
-        public int GetDni
+        public int GetDni()
         {
-            get => dni;
+            return this.dni;
 
         }
-        public int SetDni
+        public void SetDni(int value)
         {
 
-            set => dni = value;
+            this.dni = value;
         }
 
-        public int GetCodigoValidacion
+        public int GetCodigoValidacion()
         {
-            get => codigoValidacion;
+            return this.codigoValidacion;
 
         }
-        public int SetCodigoValidacion
+        public void SetCodigoValidacion(int value)
         {
-
-            set => codigoValidacion = value;
+            this.codigoValidacion = value;
         }
 
-        public DateTime GetFechaIngreso
+        public DateTime GetFechaIngreso()
         {
-            get => fechaIngreso;
+            return this.fechaIngreso;
 
         }
-        public DateTime SetFechaIngreso
+        public void SetFechaIngreso(DateTime value)
         {
 
-            set => fechaIngreso = value;
+            this.fechaIngreso = value;
         }
 
-        public DateTime GetFechaNacimiento
+        public DateTime GetFechaNacimiento()
         {
-            get => fechaNacimiento;
-
-        }
-        public DateTime SetFechaNacimiento
-        {
-
-            set => fechaNacimiento = value;
+            return this.fechaNacimiento;
         }
 
-
-        public string GetCorreo
-        {
-            get => correo;
-
-        }
-        public string SetCorreo
+        public void SetFechaNacimiento(DateTime value)
         {
 
-            set => correo = value;
-        }
-
-        public string GetSexo
-        {
-            get => sexo;
-
-        }
-        public string SetSexo
-        {
-
-            set => sexo = value;
-        }
-
-        public int GetTelefono
-        {
-            get => telefono;
-
-        }
-        public int SetTelefono
-        {
-
-            set => telefono = value;
+            this.fechaNacimiento = value;
         }
 
 
-
-
-
-        //Creo que un ConocerSede serìa mas correcto en lugar de un get
-        public Sede GetSede
+        public string GetCorreo()
         {
-            get => sedeDondeTrabaja;
+            return this.correo;
+
+        }
+        public void SetCorreo(string value)
+        {
+
+            this.correo = value;
+        }
+
+        public string GetSexo()
+        {
+            return this.sexo;
+
+        }
+        public void SetSexo(string sexo)
+        {
+
+            this.sexo = sexo;
+        }
+
+        public int GetTelefono()
+        {
+            return this.telefono;
+
+        }
+        public void SetTelefono(int value)
+        {
+
+            this.telefono = value;
+        }
+
+        public Sede GetSede()
+        {
+            return this.sedeDondeTrabaja;
 
         }
 
-        public Sede SetSede
+        public void SetSede(Sede value)
         {
 
-            set => sedeDondeTrabaja = value;
+            this.sedeDondeTrabaja = value;
         }
 
-        public string GetDomicilio
+        public string GetDomicilio()
         {
-            get => domicilio;
+            return this.domicilio;
 
         }
-        public string SetDomicilio
+        public void SetDomicilio(string value)
         {
 
-            set => domicilio = value;
+            domicilio = value;
         }
-
-
-        // Metodos originales, eliminar aquellos que no tengan referencias
-        public int Cuit
-        {
-            get => cuit;
-            set => cuit = value;
-        }
-        public int Dni
-        {
-            get => dni;
-            set => dni = value;
-        }
-
-        public int CodigoValidacion
-        {
-            get => codigoValidacion;
-            set => codigoValidacion = value;
-        }
-
-        public DateTime FechaIngreso
-        {
-            get => fechaIngreso;
-            set => fechaIngreso = value;
-        }
-
-        public DateTime FechaNacimiento
-        {
-            get => fechaNacimiento;
-            set => fechaNacimiento = value;
-        }
-
-        public string Correo
-        {
-            get => correo;
-            set => correo = value;
-        }
-
-        public string Sexo
-        {
-            get => sexo;
-            set => sexo = value;
-        }
-
-        public Sede Sede
-        {
-            get => sedeDondeTrabaja;
-            set => sedeDondeTrabaja = value;
-        }
-
-        public string Domicilio
-        {
-            get => domicilio;
-            set => domicilio = value;
-        }
-
-        public int Telefono
-        {
-            get => telefono;
-            set => telefono = value;
-        }
-
 
         public Sede ObtenerSede()
         {
             return this.sedeDondeTrabaja;
         }
-
-
     }
 }

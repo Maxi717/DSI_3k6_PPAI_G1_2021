@@ -8,12 +8,42 @@ namespace ProyectoDSIPPAI.Clases.Entidades
 {
     public class Tarifa
     {
-        private DateTime fechaFinVigencia { get; set; }
-        private DateTime fechaInicioVigencia { get; set; }
-        private int monto { get; set; }
-        private int montoAdicionalGuia { get; set; }
-        private TipoEntrada tipoEntrada { get; set; }
-        private TipoVisita tipoVisita { get; set; }
+        private DateTime fechaFinVigencia;
+        private DateTime fechaInicioVigencia;
+        private int monto;
+        private int montoAdicionalGuia;
+        private TipoEntrada tipoEntrada;
+        private TipoVisita tipoVisita;
+
+        public void SetFechaFinVigencia(DateTime fechaNueva)
+        {
+            this.fechaFinVigencia = fechaNueva;
+        }
+
+        public void SetFechaInicioVigencia(DateTime fechaNueva)
+        {
+            this.fechaInicioVigencia = fechaNueva;
+        }
+
+        public void SetMonto(int montoNuevo)
+        {
+            this.monto = montoNuevo;
+        }
+
+        public void SetMontoAdicionalGuia(int montoNuevo)
+        {
+            this.montoAdicionalGuia = montoNuevo;
+        }
+
+        public void SetTipoEntrada(TipoEntrada tipoEntradaNueva)
+        {
+            this.tipoEntrada = tipoEntradaNueva;
+        }
+
+        public void SetTipoVisita(TipoVisita tipoVisitaNueva)
+        {
+            this.tipoVisita = tipoVisitaNueva;
+        }
 
         public string ConocerTipoVisita()
         {
@@ -25,19 +55,20 @@ namespace ProyectoDSIPPAI.Clases.Entidades
             return tipoEntrada.MostrarNombre();
         }
 
+
         public List<string> MostrarMontosVigentes()
         {
+            List<string> lista = new List<string>();
+
             if (fechaFinVigencia >= DateTime.Now)
             {
-                List<string> lista = new List<string>();
                 lista.Add(monto.ToString());
-                lista.Add(this.ConocerTipoEntrada());
-                lista.Add(this.ConocerTipoVisita());
+                lista.Add(this.tipoEntrada.MostrarNombre());
+                lista.Add(this.tipoVisita.MostrarNombre());
                 return lista;
             }
             else
             {
-                List<string> lista = new List<string>();
                 return lista;
             }
         }

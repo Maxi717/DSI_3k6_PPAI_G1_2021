@@ -35,52 +35,44 @@ namespace ProyectoDSIPPAI.Clases.Entidades
             this.sede = sede;
         }
 
-        public int CantidadAlumnos
+        public void SetCantidadAlumnos(int nuevaCantidadAlumnos)
         {
-            get => cantidadAlumnos;
-            set => cantidadAlumnos = value;
+            this.cantidadAlumnos = nuevaCantidadAlumnos;
         }
-        public int CantidadAlumnosConfirmada
+        public void SetCantidadAlumnosConfirmada(int nuevaCantidadAlumnosConfirmada)
         {
-            get => cantidadAlumnosConfirmada;
-            set => cantidadAlumnosConfirmada = value;
+            this.cantidadAlumnosConfirmada = nuevaCantidadAlumnosConfirmada;
         }
-        public int DuracionEstimada
+        public void SetDuracionEstimada(int nuevaDuracionEstimada)
         {
-            get => duracionEstimada;
-            set => duracionEstimada = value;
+            this.duracionEstimada = nuevaDuracionEstimada;
         }
-        public DateTime FechaHoraCreacion
+        public void SetFechaHoraCreacion(DateTime nuevaFechaHoraCreacion)
         {
-            get => fechaHoraCreacion;
-            set => fechaHoraCreacion = value;
+            this.fechaHoraCreacion = nuevaFechaHoraCreacion;
         }
-        public DateTime FechaHoraReserva
+        public void SetFechaHoraReserva(DateTime nuevaFechaHoraReserva)
         {
-            get => fechaHoraReserva;
-            set => fechaHoraReserva = value;
+            this.fechaHoraReserva = nuevaFechaHoraReserva;
         }
-        public DateTime HoraFinReal
+        public void SetHoraFinReal(DateTime nuevaHoraFinReal)
         {
-            get => horaFinReal;
-            set => horaFinReal = value;
+            this.horaFinReal = nuevaHoraFinReal;
         }
-        public DateTime HoraInicioReal
+        public void SetHoraInicioReal(DateTime nuevaHoraInicioReal)
         {
-            get => horaInicioReal;
-            set => horaInicioReal = value;
+            this.horaInicioReal = nuevaHoraInicioReal;
         }
-        public int NumeroReserva
+        public void SetNumeroReserva(int nuevoNumeroReserva)
         {
-            get => numeroReserva;
-            set => numeroReserva = value;
+            this.numeroReserva = nuevoNumeroReserva;
         }
-        public Sede Sede
+        public void SetSede(Sede nuevaSede)
         {
-            get => sede;
-            set => sede = value;
+            this.sede = nuevaSede;
         }
-        public bool sonParaFechaHoraYSede(DateTime fechaYHora, Sede sede)
+
+        public bool SonParaFechaHoraYSede(DateTime fechaYHora, Sede sede)
         {
             if (this.fechaHoraReserva == fechaYHora && this.sede == sede)
             {

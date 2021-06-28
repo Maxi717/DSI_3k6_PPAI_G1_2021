@@ -14,27 +14,21 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
 {
     public partial class PantallaVentaEntrada : Form
     {
+        private GestorVentaEntrada gestor;
 
         public PantallaVentaEntrada(Sesion sesion)
         {
             InitializeComponent();
-            GestorVentaEntrada gestor = new GestorVentaEntrada();
+            gestor = new GestorVentaEntrada();
             gestor.OpcionVentaEntradas(this, sesion);
         }
 
-        private void btnTomarTarifa_Click(object sender, EventArgs e)
+        private void TomarSeleccionTarifas(object sender, EventArgs e)
         {
+            int indiceTarifa = (int)grdTarifas.CurrentRow.Cells[3].Value;
+            Tarifa tarifaElegida = gestor.Tarifas[indiceTarifa];
+            gestor.TomarTarifasSeleccionadas(tarifaElegida);
 
-            if (grdTarifas.SelectedRows.Count < 1)
-            {
-                MessageBox.Show("Por favor seleccione una tarifa");
-
-            }
-            else
-            {
-                gestor.TomarTarifasSeleccionadas(this);
-                
-            }
 
         }
 
@@ -43,18 +37,26 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
         {
             lblTarifas.Visible = true;
             grdTarifas.Visible = true;
-            //btnTomarTarifa.Visible = true;
-
+            btnTomarTarifa.Visible = true;
+            btnTomarTarifa.Enabled = false;
+            int rowNumber = 0;
             foreach (var tarifa in tarifas)
             {
-
+                List<string> tarifasVector = tarifa.MostrarMontosVigentes();
+                grdTarifas.Rows.Add();
+                grdTarifas.Rows[rowNumber].Cells[0].Value = tarifasVector[0];
+                grdTarifas.Rows[rowNumber].Cells[1].Value = tarifasVector[1];
+                grdTarifas.Rows[rowNumber].Cells[2].Value = tarifasVector[2];
+                grdTarifas.Rows[rowNumber].Cells[3].Value = rowNumber;
+                rowNumber += 1;
             }
+
 
         }
 
         private void PantallaVentaEntrada_Load(object sender, EventArgs e)
         {
-            gestor.OpcionVentaEntradas();
+            ;
         }
 
         public void SeleccionarCantidadEntradas()
@@ -91,22 +93,10 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             gestor.TomarConfirmacionVenta();
         }
 
-        private DataTable grdTarifas_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void grdTarifas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            btnTomarTarifa.Visible = true;
-            int indice = e.RowIndex;
-            DataGridViewRow tarifaSeleccionada = grdTarifas.Rows[indice];
-            string nombre_tarifa = tarifaSeleccionada.Cells["Nombre"].Value.ToString();
-            string tipo_visita = tarifaSeleccionada.Cells["TipoVisita"].Value.ToString();
-            string tipo_entrada = tarifaSeleccionada.Cells["TipoEntrada"].Value.ToString();
-            string guia = tarifaSeleccionada.Cells["Guia"].Value.ToString();
-
-            DataTable detalle_entradas = new DataTable();
-            detalle_entradas.Rows[0][1] = nombre_tarifa;
-            detalle_entradas.Rows[0][2] = tipo_visita;
-            detalle_entradas.Rows[0][3] = tipo_entrada;
-            detalle_entradas.Rows[0][4] = guia;
-            return detalle_entradas;
+            btnTomarTarifa.Enabled = true;
+            
         }
 
     }

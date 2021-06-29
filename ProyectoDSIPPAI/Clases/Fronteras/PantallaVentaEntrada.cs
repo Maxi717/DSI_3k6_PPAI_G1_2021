@@ -13,27 +13,28 @@ using ProyectoDSIPPAI.Clases.Entidades;
 namespace ProyectoDSIPPAI.Clases.Fronteras
 {
     public partial class PantallaVentaEntrada : Form
-    {
+    {        
+        private int tarifaSeleccionada;
         private GestorVentaEntrada gestor;
 
-        public PantallaVentaEntrada(Sesion sesion)
+        public PantallaVentaEntrada(Sesion sesion, GestorVentaEntrada gestor)
         {
             InitializeComponent();
-            gestor = new GestorVentaEntrada();
+            this.gestor = gestor;
             gestor.OpcionVentaEntradas(this, sesion);
         }
 
-        private void TomarSeleccionTarifas(object sender, EventArgs e)
+        private void TomarSeleccionTarifas(object sender, EventArgs e )
         {
-            int indiceTarifa = (int)grdTarifas.CurrentRow.Cells[3].Value;
-            Tarifa tarifaElegida = gestor.Tarifas[indiceTarifa];
-            gestor.TomarTarifasSeleccionadas(tarifaElegida);
+            int indiceTarifa = (int)grdTarifas.CurrentRow.Cells[3].Value;            
+            
+            gestor.TomarTarifasSeleccionadas(this, indiceTarifa);
 
 
         }
 
 
-        public void MostrarTarifasVigentes(List<Tarifa> tarifas)
+        public void MostrarTarifasVigentes(List<List<string>> tarifas)
         {
             lblTarifas.Visible = true;
             grdTarifas.Visible = true;
@@ -41,12 +42,11 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             btnTomarTarifa.Enabled = false;
             int rowNumber = 0;
             foreach (var tarifa in tarifas)
-            {
-                List<string> tarifasVector = tarifa.MostrarMontosVigentes();
+            {               
                 grdTarifas.Rows.Add();
-                grdTarifas.Rows[rowNumber].Cells[0].Value = tarifasVector[0];
-                grdTarifas.Rows[rowNumber].Cells[1].Value = tarifasVector[1];
-                grdTarifas.Rows[rowNumber].Cells[2].Value = tarifasVector[2];
+                grdTarifas.Rows[rowNumber].Cells[0].Value = tarifa[0];
+                grdTarifas.Rows[rowNumber].Cells[2].Value = tarifa[1];
+                grdTarifas.Rows[rowNumber].Cells[1].Value = tarifa[2];                
                 grdTarifas.Rows[rowNumber].Cells[3].Value = rowNumber;
                 rowNumber += 1;
             }
@@ -56,18 +56,20 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
 
         private void PantallaVentaEntrada_Load(object sender, EventArgs e)
         {
-            ;
+            
         }
 
         public void SeleccionarCantidadEntradas()
         {
-            lblCantidad.Visible = true;
-            txtCantidad.Visible = true;
-            btnCantidadEntradas.Visible = true;
+          
+            txtCantidad.Enabled = true;
+            btnCantidadEntradas.Enabled = true;
 
         }
 
-        private void btnCantidadEntradas_Click(object sender, EventArgs e)
+        // aa:bb minutos / 60 = aa --> minutos % 60 = b
+
+        private void TomarCantidadEntradas(object sender, EventArgs e)
         {
             if(txtCantidad.Text.Equals(""))
             {
@@ -76,21 +78,21 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             else
             {
                 int cantidad = int.Parse(txtCantidad.Text);
-                gestor.CantidadEntradasAEmitir(cantidad);
+                gestor.CantidadEntradasAEmitir(this, cantidad);
             }
             
         }
 
         public void MostrarDetalleEntradas(DataTable detalle_entradas, int numero_entrada)
         {
-            grdDetalle.Visible = true;
 
-            grdDetalle.Rows.Add(numero_entrada, detalle_entradas.Rows[0][1].ToString(), detalle_entradas.Rows[0][2].ToString(), detalle_entradas.Rows[0][3].ToString(), detalle_entradas.Rows[0][4].ToString());
+
+            // jkjjjjjjjjjjjj grdDetalle.Rows.Add(numero_entrada, detalle_entradas.Rows[0][1].ToString(), detalle_entradas.Rows[0][2].ToString(), detalle_entradas.Rows[0][3].ToString(), detalle_entradas.Rows[0][4].ToString());
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            gestor.TomarConfirmacionVenta();
+            // jjjjjjjjjjjjjjjjjjjjgestor.TomarConfirmacionVenta();
         }
 
         private void grdTarifas_CellClick(object sender, DataGridViewCellEventArgs e)

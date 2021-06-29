@@ -75,12 +75,12 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         public bool SonParaFechaHoraYSede(DateTime fechaEntrada, Sede sede)
         {
             DateTime fechaFinReserva = this.fechaHoraReserva.AddMinutes(duracionEstimada);
-            int res = DateTime.Compare(fechaEntrada,fechaFinReserva);
-
-            // <0 si d1 < d2
             DateTime fechaActual = DateTime.Now;
+            int inicioReservaVsAhora = DateTime.Compare(this.fechaHoraReserva, fechaActual);
+            int finReservaVsAhora = DateTime.Compare(fechaFinReserva, fechaActual);
+            int inicioReservaVsFinVisita = DateTime.Compare(fechaHoraReserva, fechaEntrada);
             
-            if (0 < DateTime.Compare(fechaEntrada, fechaFinReserva) && 0 >= DateTime.Compare(fechaEntrada, fechaFinReserva);    && this.sede == sede)
+            if ( (inicioReservaVsAhora < 0 && finReservaVsAhora > 0) || (inicioReservaVsAhora > 0 && inicioReservaVsFinVisita < 0) )
             {
                 return true;
             }

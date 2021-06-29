@@ -30,10 +30,6 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
         private void InitializeComponent()
         {
             this.grdTarifas = new System.Windows.Forms.DataGridView();
-            this.Monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoVisita = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ListIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblTarifas = new System.Windows.Forms.Label();
             this.btnTomarTarifa = new System.Windows.Forms.Button();
             this.lblCantidad = new System.Windows.Forms.Label();
@@ -43,10 +39,14 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtPrecioUnitario = new System.Windows.Forms.TextBox();
+            this.txtCantidadAMostrar = new System.Windows.Forms.TextBox();
+            this.txtPrecioTotal = new System.Windows.Forms.TextBox();
             this.txtCantidad = new System.Windows.Forms.NumericUpDown();
+            this.Monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoVisita = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ListIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdTarifas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCantidad)).BeginInit();
             this.SuspendLayout();
@@ -72,37 +72,6 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             this.grdTarifas.TabIndex = 0;
             this.grdTarifas.Visible = false;
             this.grdTarifas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdTarifas_CellClick);
-            // 
-            // Monto
-            // 
-            this.Monto.HeaderText = "Monto";
-            this.Monto.MinimumWidth = 6;
-            this.Monto.Name = "Monto";
-            this.Monto.ReadOnly = true;
-            this.Monto.Width = 125;
-            // 
-            // TipoVisita
-            // 
-            this.TipoVisita.HeaderText = "Tipo de Visita";
-            this.TipoVisita.MinimumWidth = 6;
-            this.TipoVisita.Name = "TipoVisita";
-            this.TipoVisita.ReadOnly = true;
-            this.TipoVisita.Width = 125;
-            // 
-            // TipoEntrada
-            // 
-            this.TipoEntrada.HeaderText = "Tipo de Entrada";
-            this.TipoEntrada.MinimumWidth = 6;
-            this.TipoEntrada.Name = "TipoEntrada";
-            this.TipoEntrada.ReadOnly = true;
-            this.TipoEntrada.Width = 125;
-            // 
-            // ListIndex
-            // 
-            this.ListIndex.HeaderText = "N";
-            this.ListIndex.Name = "ListIndex";
-            this.ListIndex.ReadOnly = true;
-            this.ListIndex.Visible = false;
             // 
             // lblTarifas
             // 
@@ -160,11 +129,11 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             this.btnConfirmar.Enabled = false;
             this.btnConfirmar.Location = new System.Drawing.Point(578, 217);
             this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new System.Drawing.Size(122, 77);
+            this.btnConfirmar.Size = new System.Drawing.Size(122, 80);
             this.btnConfirmar.TabIndex = 8;
             this.btnConfirmar.Text = "Confirmar";
             this.btnConfirmar.UseVisualStyleBackColor = true;
-            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
+            this.btnConfirmar.Click += new System.EventHandler(this.TomarConfirmacionVenta);
             // 
             // label1
             // 
@@ -195,32 +164,33 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             this.label3.TabIndex = 9;
             this.label3.Text = "Precio Total";
             // 
-            // textBox1
+            // txtPrecioUnitario
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(474, 246);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(88, 20);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.Visible = false;
+            this.txtPrecioUnitario.Enabled = false;
+            this.txtPrecioUnitario.Location = new System.Drawing.Point(474, 246);
+            this.txtPrecioUnitario.Name = "txtPrecioUnitario";
+            this.txtPrecioUnitario.ReadOnly = true;
+            this.txtPrecioUnitario.Size = new System.Drawing.Size(88, 20);
+            this.txtPrecioUnitario.TabIndex = 3;
             // 
-            // textBox2
+            // txtCantidadAMostrar
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(474, 217);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(88, 20);
-            this.textBox2.TabIndex = 3;
-            this.textBox2.Visible = false;
+            this.txtCantidadAMostrar.Enabled = false;
+            this.txtCantidadAMostrar.Location = new System.Drawing.Point(474, 217);
+            this.txtCantidadAMostrar.Name = "txtCantidadAMostrar";
+            this.txtCantidadAMostrar.ReadOnly = true;
+            this.txtCantidadAMostrar.Size = new System.Drawing.Size(88, 20);
+            this.txtCantidadAMostrar.TabIndex = 3;
             // 
-            // textBox3
+            // txtPrecioTotal
             // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(474, 274);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(88, 20);
-            this.textBox3.TabIndex = 3;
-            this.textBox3.Visible = false;
+            this.txtPrecioTotal.Enabled = false;
+            this.txtPrecioTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrecioTotal.Location = new System.Drawing.Point(474, 274);
+            this.txtPrecioTotal.Name = "txtPrecioTotal";
+            this.txtPrecioTotal.ReadOnly = true;
+            this.txtPrecioTotal.Size = new System.Drawing.Size(88, 23);
+            this.txtPrecioTotal.TabIndex = 3;
             // 
             // txtCantidad
             // 
@@ -229,6 +199,37 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(251, 20);
             this.txtCantidad.TabIndex = 10;
+            // 
+            // Monto
+            // 
+            this.Monto.HeaderText = "Monto";
+            this.Monto.MinimumWidth = 6;
+            this.Monto.Name = "Monto";
+            this.Monto.ReadOnly = true;
+            this.Monto.Width = 75;
+            // 
+            // TipoVisita
+            // 
+            this.TipoVisita.HeaderText = "Tipo de Visita";
+            this.TipoVisita.MinimumWidth = 6;
+            this.TipoVisita.Name = "TipoVisita";
+            this.TipoVisita.ReadOnly = true;
+            this.TipoVisita.Width = 200;
+            // 
+            // TipoEntrada
+            // 
+            this.TipoEntrada.HeaderText = "Tipo de Entrada";
+            this.TipoEntrada.MinimumWidth = 6;
+            this.TipoEntrada.Name = "TipoEntrada";
+            this.TipoEntrada.ReadOnly = true;
+            this.TipoEntrada.Width = 200;
+            // 
+            // ListIndex
+            // 
+            this.ListIndex.HeaderText = "N";
+            this.ListIndex.Name = "ListIndex";
+            this.ListIndex.ReadOnly = true;
+            this.ListIndex.Visible = false;
             // 
             // PantallaVentaEntrada
             // 
@@ -243,13 +244,18 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             this.Controls.Add(this.lblDetalle);
             this.Controls.Add(this.btnCantidadEntradas);
             this.Controls.Add(this.lblCantidad);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtPrecioTotal);
+            this.Controls.Add(this.txtCantidadAMostrar);
+            this.Controls.Add(this.txtPrecioUnitario);
             this.Controls.Add(this.btnTomarTarifa);
             this.Controls.Add(this.lblTarifas);
             this.Controls.Add(this.grdTarifas);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Location = new System.Drawing.Point(50, 150);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "PantallaVentaEntrada";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "PantallaVentaEntrada";
             this.Load += new System.EventHandler(this.PantallaVentaEntrada_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdTarifas)).EndInit();
@@ -271,13 +277,13 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtPrecioUnitario;
+        private System.Windows.Forms.TextBox txtCantidadAMostrar;
+        private System.Windows.Forms.TextBox txtPrecioTotal;
+        private System.Windows.Forms.NumericUpDown txtCantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Monto;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoVisita;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoEntrada;
         private System.Windows.Forms.DataGridViewTextBoxColumn ListIndex;
-        private System.Windows.Forms.NumericUpDown txtCantidad;
     }
 }

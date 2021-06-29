@@ -12,9 +12,16 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
 {
     public partial class PantallaSala : Form
     {
-        public PantallaSala()
+        public PantallaSala(int capacidad)
         {
             InitializeComponent();
+            lblCapacidad.Text = capacidad.ToString();
+        }
+
+        public void ActualizarCantidadVisitantes(int cantidadASumar)
+        {
+            int cantidadActual = int.Parse(lblCantVisitantes.Text);
+            lblCantVisitantes.Text = (cantidadActual + cantidadASumar).ToString();
         }
     }
 }

@@ -10,8 +10,8 @@ namespace ProyectoDSIPPAI.Clases.Entidades
     {
         private DateTime fechaFinVigencia;
         private DateTime fechaInicioVigencia;
-        private int monto;
-        private int montoAdicionalGuia;
+        private float monto;
+        private float montoAdicionalGuia;
         private TipoEntrada tipoEntrada;
         private TipoVisita tipoVisita;
 
@@ -25,12 +25,12 @@ namespace ProyectoDSIPPAI.Clases.Entidades
             this.fechaInicioVigencia = fechaNueva;
         }
 
-        public void SetMonto(int montoNuevo)
+        public void SetMonto(float montoNuevo)
         {
             this.monto = montoNuevo;
         }
 
-        public void SetMontoAdicionalGuia(int montoNuevo)
+        public void SetMontoAdicionalGuia(float montoNuevo)
         {
             this.montoAdicionalGuia = montoNuevo;
         }
@@ -75,6 +75,11 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         public DateTime GetFechaFinVigencia()
         {
             return this.fechaFinVigencia;
+        }
+
+        public float GetMonto()
+        {
+            return this.monto;
         }
     }
 }

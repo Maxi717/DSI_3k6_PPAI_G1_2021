@@ -14,7 +14,7 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
 {
     public partial class PantallaVentaEntrada : Form
     {        
-        private int tarifaSeleccionada;
+        private Tarifa tarifaSeleccionada;
         private GestorVentaEntrada gestor;
 
         public PantallaVentaEntrada(Sesion sesion, GestorVentaEntrada gestor)
@@ -26,8 +26,8 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
 
         private void TomarSeleccionTarifas(object sender, EventArgs e )
         {
-            int indiceTarifa = (int)grdTarifas.CurrentRow.Cells[3].Value;            
-            
+            int indiceTarifa = (int)grdTarifas.CurrentRow.Cells[3].Value;
+            this.tarifaSeleccionada = gestor.GetTarifas()[indiceTarifa];
             gestor.TomarTarifasSeleccionadas(this, indiceTarifa);
 
 
@@ -78,21 +78,22 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             else
             {
                 int cantidad = int.Parse(txtCantidad.Text);
-                gestor.CantidadEntradasAEmitir(this, cantidad);
+                gestor.CantidadEntradasAEmitir(this, cantidad, tarifaSeleccionada.GetMonto());
             }
             
         }
 
-        public void MostrarDetalleEntradas(DataTable detalle_entradas, int numero_entrada)
+        public void MostrarDetalleEntradas(float precioTotal)
         {
-
-
-            // jkjjjjjjjjjjjj grdDetalle.Rows.Add(numero_entrada, detalle_entradas.Rows[0][1].ToString(), detalle_entradas.Rows[0][2].ToString(), detalle_entradas.Rows[0][3].ToString(), detalle_entradas.Rows[0][4].ToString());
+            txtCantidadAMostrar.Text = txtCantidad.Text;
+            txtPrecioUnitario.Text = tarifaSeleccionada.GetMonto().ToString();
+            txtPrecioTotal.Text = precioTotal.ToString();
+            btnConfirmar.Enabled = true;
         }
 
-        private void btnConfirmar_Click(object sender, EventArgs e)
+        private void TomarConfirmacionVenta(object sender, EventArgs e)
         {
-            // jjjjjjjjjjjjjjjjjjjjgestor.TomarConfirmacionVenta();
+            gestor.TomarConfirmacionVenta(int.Parse(txtCantidad.Text), this.tarifaSeleccionada);
         }
 
         private void grdTarifas_CellClick(object sender, DataGridViewCellEventArgs e)

@@ -17,7 +17,19 @@ namespace ProyectoDSIPPAI.Clases.Gestores
         private Usuario usuario;
         private Sede sedeActual;
         private int duracionExpo;
+        private PantallaEntrada pantallaEntrada;
+        private PantallaSala pantallaSala;
 
+        public GestorVentaEntrada(PantallaEntrada pantallaEnt, PantallaSala pantallaSal)
+        {
+            this.pantallaEntrada = pantallaEnt;
+            this.pantallaSala = pantallaSal;
+        }
+
+        public List<Tarifa> GetTarifas()
+        {
+            return this.tarifas;
+        }
 
         public Empleado Empleado
         {
@@ -83,7 +95,7 @@ namespace ProyectoDSIPPAI.Clases.Gestores
             return duracionExposicionesVigentes;
         }
 
-        public void CantidadEntradasAEmitir(PantallaVentaEntrada pantalla , int cantidadEntradas)
+        public void CantidadEntradasAEmitir(PantallaVentaEntrada pantalla , int cantidadEntradas, float precioUnitario)
         {
 
             int capacidadMaxima = BuscarCapacidadSede();
@@ -91,8 +103,71 @@ namespace ProyectoDSIPPAI.Clases.Gestores
             int cantidadVisitantesEnSede = BuscarVisitantesEnSede(fechaHoraActual);
             int cantidadVisitantesPorAsistir = BuscarReservasParaAsistir(fechaHoraActual);
             bool validacion = ValidarLimiteVisitantes(capacidadMaxima, cantidadVisitantesEnSede, cantidadVisitantesPorAsistir, cantidadEntradas);
+            if (validacion)
+            {
+                float precioTotal = CalcularTotalVenta(cantidadEntradas, precioUnitario);
+                pantalla.MostrarDetalleEntradas(precioTotal);
+            }
+        }
+
+        public void TomarConfirmacionVenta(int cantidadEntradas, Tarifa tarifa)
+        {
+            int ultimoNro = BuscarUltimoNroEntrada();
+            List<Entrada> entradasAImprimir = GenerarEntradas(ultimoNro, cantidadEntradas, tarifa);
+            ImprimirEntradas(entradasAImprimir);
+            ActualizarVisitantesEnPantallas(cantidadEntradas);
+
 
         }
+
+        public void ActualizarVisitantesEnPantallas(int cantidadASumar)
+        {
+            pantallaSala.ActualizarCantidadVisitantes(cantidadASumar);
+            pantallaEntrada.ActualizarCantidadVisitantes(cantidadASumar);
+        }
+
+        public void ImprimirEntradas(List<Entrada> entradas)
+        {
+            foreach (Entrada entrada in entradas)
+            {
+                ImpresorEntradas.imprimir(entrada);
+            }
+        }
+
+        public List<Entrada> GenerarEntradas(int ultimoNro, int cantidad, Tarifa tarifa)
+        {
+            List<Entrada> entradasGeneradas = new List<Entrada>();
+            for (int i = 0; i < cantidad; i++)
+            {
+                Entrada entradaGenerada = new Entrada();
+                entradaGenerada.SetFechaVenta(DateTime.Now.Date);
+                entradaGenerada.SetHoraVenta(DateTime.Now.TimeOfDay);
+                entradaGenerada.SetNumero(ultimoNro + i);
+                entradaGenerada.SetMonto(tarifa.GetMonto());
+                entradaGenerada.SetTarifa(tarifa);
+                entradaGenerada.SetSede(this.sedeActual);
+                entradasGeneradas.Add(entradaGenerada);
+            }
+            return entradasGeneradas;
+        }
+
+        public int BuscarUltimoNroEntrada()
+        {
+            List<Entrada> entradas = new List<Entrada>();
+            int numeroMayor = 0;
+            // ACÁ IRÍA CODIGO QUE LLENA LA LIST CON OBJETOS ENTRADA
+            foreach (Entrada entrada in entradas)
+            {
+                int numeroEntrada = entrada.GetNumero();
+                if (numeroEntrada > numeroMayor)
+                {
+                    numeroMayor = numeroEntrada;
+                }
+            }
+
+            return numeroMayor + 1;
+        }
+
         public int BuscarCapacidadSede()
         {
             
@@ -127,6 +202,8 @@ namespace ProyectoDSIPPAI.Clases.Gestores
 
             }
 
+            return cantidadVisitantesEnSede;
+
             //tablaEntradas = ADEntradas.ObtenerListadoEntradas();
 
             // 
@@ -145,7 +222,6 @@ namespace ProyectoDSIPPAI.Clases.Gestores
             //    }
 
             //}
-            return cantidadVisitantesEnSede;
         }
         public int BuscarReservasParaAsistir(DateTime fechaHoraActual)
         {
@@ -163,12 +239,14 @@ namespace ProyectoDSIPPAI.Clases.Gestores
             foreach (ReservaVisita reserva in listaReserva)
             {
 
-                if (reserva.SonParaFechaYHoraSede(finVisita, this.sedeActual ))
+                if (reserva.SonParaFechaHoraYSede(finVisita, this.sedeActual ))
                 {
                     cantidadVisitantesEnSede += 1;
                 }
 
             }
+
+            return cantidadVisitantesEnSede;
 
 
             //int cantidadVisitantesPorAsistir = 0;
@@ -191,9 +269,8 @@ namespace ProyectoDSIPPAI.Clases.Gestores
             //    {
             //        cantidadVisitantesPorAsistir += 1;
             //    }
-            return cantidadVisitantesEnSede;
-        
-            
+
+
         }
         public bool ValidarLimiteVisitantes(int capacidadMaxima, int cantidadEnSede, int cantidadPorVenir, int cantidadEntradasAEmitir)
         {
@@ -208,6 +285,12 @@ namespace ProyectoDSIPPAI.Clases.Gestores
             }
         }
         
+        public float CalcularTotalVenta(int cantidadEntradas, float precioEntrada)
+        {
+            float total = cantidadEntradas * precioEntrada;
+            return total;
+        }
+
         public void SetTarifas(List<Tarifa> tarifas)
         {
             this.tarifas = tarifas;

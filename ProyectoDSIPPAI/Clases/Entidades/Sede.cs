@@ -29,6 +29,16 @@ namespace ProyectoDSIPPAI.Clases.Entidades
 
         }
 
+        public int GetCantidadMaximaVisitantes()
+        {
+            return this.cantidadMaximaVisitantes;
+        }
+
+        public string GetNombre()
+        {
+            return this.nombre;
+        }
+
         public void SetCantidadMaximaVisitantes(int nuevaCantidadMaxima)
         {
             this.cantidadMaximaVisitantes = nuevaCantidadMaxima;

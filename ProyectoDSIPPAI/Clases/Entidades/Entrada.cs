@@ -65,12 +65,21 @@ namespace ProyectoDSIPPAI.Clases.Entidades
             return this.monto;
 
         }
-        public void SetMonto(int valor)
+        public void SetMonto(float valor)
         {
 
             this.monto = valor;
         }
 
+        public Tarifa GetTarifa()
+        {
+            return this.tarifa;
+        }
+
+        public void SetTarifa(Tarifa unaTarifa)
+        {
+            this.tarifa = unaTarifa;
+        }
 
         public bool SonDeFechaYHoraSede(DateTime fechaActual, Sede sede)
         {

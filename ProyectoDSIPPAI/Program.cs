@@ -67,8 +67,11 @@ namespace ProyectoDSIPPAI
             sesion.SetHoraInicio(TimeSpan.Parse("09:00:00"));
             sesion.SetUsuario(unUsuario);
 
-            GestorVentaEntrada gestor = new GestorVentaEntrada();
-
+            PantallaSala pantallaSala = new PantallaSala(unaSede.GetCantidadMaximaVisitantes());
+            PantallaEntrada pantallaEntrada = new PantallaEntrada(unaSede.GetCantidadMaximaVisitantes());
+            GestorVentaEntrada gestor = new GestorVentaEntrada(pantallaEntrada, pantallaSala);
+            pantallaSala.Show();
+            pantallaEntrada.Show();
             Application.Run(new PantallaVentaEntrada(sesion, gestor));
         }
     }

@@ -60,17 +60,27 @@ namespace ProyectoDSIPPAI.Clases.Entidades
             this.sede = valor;
         }
 
+        public float GetMonto()
+        {
+            return this.monto;
 
-        public bool SonDeFechaYHoraSede(Sede sede)
+        }
+        public void SetMonto(int valor)
+        {
+
+            this.monto = valor;
+        }
+
+
+        public bool SonDeFechaYHoraSede(DateTime fechaActual, Sede sede)
         {
             bool resultado = false;
 
-            DateTime fechaActual = DateTime.Today;
-            TimeSpan horaActual = DateTime.Now.TimeOfDay;
-            if (sede == this.sede && this.fechaVenta == fechaActual && this.horaVenta == horaActual)
+            DateTime fecha = fechaActual.Date;
+            int hora = fechaActual.TimeOfDay.Hours;
+            if (sede == this.sede && this.fechaVenta == fecha && this.horaVenta.Hours == hora )
             {
                 resultado = true;
-
 
             }
 
@@ -80,3 +90,4 @@ namespace ProyectoDSIPPAI.Clases.Entidades
 
         }
     }
+}

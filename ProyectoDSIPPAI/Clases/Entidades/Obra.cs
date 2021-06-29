@@ -92,10 +92,10 @@ namespace ProyectoDSIPPAI.Clases.Entidades
 
 
 
-        public int GetDuracionResumida(Obra obra)
+        public int GetDuracionResumida()
         {
-            duracionResumida = obra.duracionResumida;
-            return duracionResumida;
+            int duracion = this.duracionResumida;
+            return duracion;
         }
 
 

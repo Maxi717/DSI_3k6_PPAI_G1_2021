@@ -7,6 +7,7 @@ using ProyectoDSIPPAI.Clases.Fronteras;
 using ProyectoDSIPPAI.Clases.Entidades;
 using System.Data.SqlClient;
 using System.Data;
+using ProyectoDSIPPAI.Clases.Gestores;
 
 namespace ProyectoDSIPPAI
 {
@@ -66,7 +67,9 @@ namespace ProyectoDSIPPAI
             sesion.SetHoraInicio(TimeSpan.Parse("09:00:00"));
             sesion.SetUsuario(unUsuario);
 
-            Application.Run(new PantallaVentaEntrada(sesion));
+            GestorVentaEntrada gestor = new GestorVentaEntrada();
+
+            Application.Run(new PantallaVentaEntrada(sesion, gestor));
         }
     }
 }

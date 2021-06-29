@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoDSIPPAI.Clases.Gestores;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
 {
     public class Sede
     {
-        private int cantidadMaximaVisitntes;
+        private int cantidadMaximaVisitantes;
         private int cantMaxPorGuia;
         private string nombre;
         private List<Tarifa> tarifas;
@@ -16,7 +17,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
 
         public Sede(int cantidadMaximaVisitntes, int cantMaxPorGuia, string nombre, List<Tarifa> tarifas, List<Exposicion> exposiciones)
         {
-            this.cantidadMaximaVisitntes = cantidadMaximaVisitntes;
+            this.cantidadMaximaVisitantes = cantidadMaximaVisitntes;
             this.cantMaxPorGuia = cantMaxPorGuia;
             this.nombre = nombre;
             this.tarifas = tarifas;
@@ -30,7 +31,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
 
         public void SetCantidadMaximaVisitantes(int nuevaCantidadMaxima)
         {
-            this.cantidadMaximaVisitntes = nuevaCantidadMaxima;
+            this.cantidadMaximaVisitantes = nuevaCantidadMaxima;
         }
         public void SetCantMaxPorGuia(int nuevaCantMax)
         {
@@ -42,54 +43,61 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         }
         public void SetTarifas(List<Tarifa> nuevasTarifas)
         {
-            this.tarifas = tarifas;
+            this.tarifas = nuevasTarifas;
         }
         public void SetExposiciones(List<Exposicion> nuevaExposiciones)
         {
-            this.exposiciones = exposiciones;
+            this.exposiciones = nuevaExposiciones;
         }
 
         // EN EL DIAGR. DE CLASES ESTÁ COMO  getCantidadMaximaVisitntes()
         public int MostrarCantidadMaximaVisitantes()
         {
-            return this.cantidadMaximaVisitntes;
+            return this.cantidadMaximaVisitantes;
         }
 
 
-        public List<List<string>> ObtenerTarifasVigentes()
+        public List<List<string>> ObtenerTarifasVigentes(GestorVentaEntrada gestor)
         {
-            List<List<string>> tarifasVigentes = new List<List<string>>();
+            List<List<string>> tarifasVigentesStrings = new List<List<string>>();
+            List<Tarifa> tarifasVigentes = new List<Tarifa>();
             for (int i = 0; i < this.tarifas.Count; i++)
             {
-                // ALTERNATIVAS
-                // if (Tarifa.mostrar_montos_vigentes() != List<string>())
-                //if (Tarifa.mostrar_montos_vigentes().Count() == 0)
 
                 List<string> montosVigentes = this.tarifas[i].MostrarMontosVigentes();
                 if (montosVigentes.Count() != 0)
                 {
-                    tarifasVigentes.Add(montosVigentes);
+                    tarifasVigentesStrings.Add(montosVigentes);
+                    tarifasVigentes.Add(this.tarifas[i]);
                 }
                 else
                 {
                 }
             }
-            return tarifasVigentes;
+
+            gestor.SetTarifas(tarifasVigentes);
+            return tarifasVigentesStrings;
         }
+
+
 
         public int CalcularDuracionExposicionesVigentes()
         {
             int duracionExpoVigentes = 0;
-            for (int i = 0; i < this.exposiciones.Count; i++)
+
+            List<Exposicion> exposicionesVigentes = new List<Exposicion>();
+            foreach (Exposicion exposicion in this.exposiciones)
             {
-                bool vigencia = this.exposiciones[i].EsVigente();
-                if (vigencia == true)
+                bool vigencia = exposicion.EsVigente();
+                if (vigencia)
                 {
-                    duracionExpoVigentes += this.exposiciones[i].CalcularDuracionObrasExpuestas();
+                    exposicionesVigentes.Add(exposicion);
                 }
-                else
-                {
-                }
+            }
+
+            for (int i = 0; i < exposicionesVigentes.Count; i++)
+            {                
+                duracionExpoVigentes += exposicionesVigentes[i].CalcularDuracionObrasExpuestas();
             }
 
             return duracionExpoVigentes;

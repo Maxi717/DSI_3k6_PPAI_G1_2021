@@ -72,9 +72,15 @@ namespace ProyectoDSIPPAI.Clases.Entidades
             this.sede = nuevaSede;
         }
 
-        public bool SonParaFechaHoraYSede(DateTime fechaYHora, Sede sede)
+        public bool SonParaFechaHoraYSede(DateTime fechaEntrada, Sede sede)
         {
-            if (this.fechaHoraReserva == fechaYHora && this.sede == sede)
+            DateTime fechaFinReserva = this.fechaHoraReserva.AddMinutes(duracionEstimada);
+            int res = DateTime.Compare(fechaEntrada,fechaFinReserva);
+
+            // <0 si d1 < d2
+            DateTime fechaActual = DateTime.Now;
+            
+            if (0 < DateTime.Compare(fechaEntrada, fechaFinReserva) && 0 >= DateTime.Compare(fechaEntrada, fechaFinReserva);    && this.sede == sede)
             {
                 return true;
             }

@@ -60,17 +60,16 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         {
             List<string> lista = new List<string>();
 
-            if (fechaFinVigencia >= DateTime.Now)
+            int resultado = DateTime.Compare(fechaFinVigencia, DateTime.Now);
+
+            if (resultado >= 0)
             {
                 lista.Add(monto.ToString());
                 lista.Add(this.tipoEntrada.MostrarNombre());
                 lista.Add(this.tipoVisita.MostrarNombre());
-                return lista;
-            }
-            else
-            {
-                return lista;
-            }
+            }                        
+            
+            return lista;
         }
 
         public DateTime GetFechaFinVigencia()

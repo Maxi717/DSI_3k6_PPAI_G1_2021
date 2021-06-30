@@ -8,13 +8,22 @@ namespace ProyectoDSIPPAI.Clases.Entidades
 {
     public class TipoEntrada
     {
-            private string nombre { get; set; }
+        private string nombre { get; set; }
 
-            public string mostrarNombre()
-            {
-                return nombre;
-            }
-     
+        public string GetNombre()
+        {
+            return nombre;
+        }
+
+        public string MostrarNombre()
+        {
+            return nombre;
+        }
+
+        public void SetNombre(string nombreNuevo)
+        {
+            this.nombre = nombreNuevo;
+        }
 
     }
 }

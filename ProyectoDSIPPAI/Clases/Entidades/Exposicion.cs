@@ -18,33 +18,78 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         private Empleado empleado;
         private List<DetalleExposicion> detalleExposicion;
 
+        public void SetNombre(string unNombre)
+        {
+            this.nombre = unNombre;
+        }
+
+        public void SetEmpleado(Empleado unEmpleado)
+        {
+            this.empleado = unEmpleado;
+        }
+
+        public void SetDetallesExposicion(List<DetalleExposicion> unaLista)
+        {
+            this.detalleExposicion = unaLista;
+        }
+
+        
+        public void SetFechaFin(DateTime nuevaFecha)
+        {
+            this.fechaFin = nuevaFecha;
+        }
+
+        public void SetFechaFinReplanificada(DateTime nuevaFecha)
+        {
+            this.fechaFinReplanificada = nuevaFecha;
+        }
+
+        public void SetFechaInicio(DateTime nuevaFecha)
+        {
+            this.fechaInicio = nuevaFecha;
+        }
+
+        public void SetFechaInicioReplanificada(DateTime nuevaFecha)
+        {
+            this.fechaInicioReplanificada = nuevaFecha;
+        }
+
+        public void SetHoraApertura(TimeSpan unaHora)
+        {
+            this.horaApertura = unaHora;
+        }
+
+        public void SetHoraCierre(TimeSpan unaHora)
+        {
+            this.horaCierre = unaHora;
+        }
+
 
         public bool EsVigente()
         {
             bool resultado = false;
 
             DateTime fechaActual = DateTime.Today;
-            
-            if(fechaFinReplanificada == null)
+
+            if (fechaFinReplanificada == null)
             {
                 if (fechaFin > fechaActual)
                 {
                     resultado = true;
                 }
-
-
             }
             else
             {
-                if(fechaFinReplanificada > fechaActual)
+                if (fechaFinReplanificada > fechaActual)
                 {
                     resultado = true;
                 }
 
+                else
+                {
+                    resultado = false;
+                }
             }
-            
-
-
             return resultado;
         }
 
@@ -54,8 +99,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
 
             foreach (DetalleExposicion detalle in this.detalleExposicion)
             {
-                duracion += detalle.buscar_duracion_obras();
-
+                duracion += detalle.BuscarDuracionObras();
             }
 
             return duracion;

@@ -8,24 +8,32 @@ namespace ProyectoDSIPPAI.Clases.Entidades
 {
     public class DetalleExposicion
     {
-        string lugarAsignado;
-        Obra obra;
+        private string lugarAsignado;
+        private Obra obra;
 
-        public string LugarAsignado {
-            get => lugarAsignado;
-            set => lugarAsignado = value;
-
+        public string GetLugarAsignado()
+        {
+            return this.lugarAsignado;
+        }
+        public Obra GetObra()
+        { 
+            return this.obra;
         }
 
-        public Obra Obra
+        public void SetObra(Obra nuevaObra)
         {
-            get => obra;
-            set => obra = value;
+            this.obra = nuevaObra;
         }
 
-        public int buscar_duracion_obras()
+        public void SetLugarAsignado(string nuevoLugar)
         {
-            return this.Obra.GetDuracionResumida();
+            this.lugarAsignado = nuevoLugar;
+        }
+
+        public int BuscarDuracionObras()
+        {
+            obra = this.GetObra();
+            return obra.GetDuracionResumida();
         }
 
     }

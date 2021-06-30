@@ -8,44 +8,55 @@ namespace ProyectoDSIPPAI.Clases.Entidades
 {
     public class Sesion
     {
-        private DateTime fecha_fin;
-        private DateTime fecha_inicio;
-        private DateTime hora_fin;
-        private DateTime hora_inicio;
+        private DateTime fechaFin;
+        private DateTime fechaInicio;
+        private TimeSpan horaFin;
+        private TimeSpan horaInicio;
+        private Usuario usuario;
 
 
-        public Sesion(DateTime fecha_fin, DateTime fecha_inicio, DateTime hora_fin, DateTime hora_inicio)
+        public Sesion(DateTime fecha_fin, DateTime fecha_inicio, TimeSpan hora_fin, TimeSpan hora_inicio)
         {
-            this.fecha_fin = fecha_fin;
-            this.fecha_inicio = fecha_inicio;
-            this.hora_fin = hora_fin;
-            this.hora_inicio = hora_inicio;
+            this.fechaFin = fecha_fin;
+            this.fechaInicio = fecha_inicio;
+            this.horaFin = hora_fin;
+            this.horaInicio = hora_inicio;
         }
         public Sesion()
         {
 
         }
-        public DateTime Fecha_fin
+
+        public void SetFechaFin(DateTime fecha_fin_nueva)
         {
-            get => fecha_fin;
-            set => fecha_fin = value;
+            this.fechaFin = fecha_fin_nueva;
         }
-        public DateTime Fecha_inicio
+        public void SetFechaInicio(DateTime fecha_inicio_nueva)
         {
-            get => fecha_inicio;
-            set => fecha_inicio = value;
+            this.fechaInicio = fecha_inicio_nueva;
         }
-        public DateTime Hora_fin
+        public void SetHoraFin(TimeSpan hora_fin_nueva)
         {
-            get => hora_fin;
-            set => hora_fin = value;
+            this.horaFin = hora_fin_nueva;
         }
-        public DateTime Hora_inicio
+        public void SetHoraInicio(TimeSpan hora_inicio_nueva)
         {
-            get => hora_inicio;
-            set => hora_inicio = value;
+            this.horaInicio = hora_inicio_nueva;
         }
 
+        public void SetUsuario(Usuario usuario_nuevo)
+        {
+            this.usuario = usuario_nuevo;
+        }
 
+        //public Usuario conocer_usuario()
+        //{
+        //    //jjjjjjjjjjjjjjjjj return usuario.getUsuario();
+        //}
+        
+        public Empleado GetEmpleadoEnSesion()
+        {
+            return usuario.ObtenerEmpleado();
+        }
     }
 }

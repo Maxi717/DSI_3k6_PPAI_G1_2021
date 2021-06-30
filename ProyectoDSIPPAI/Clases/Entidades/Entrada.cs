@@ -16,29 +16,80 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         Sede sede;
         Tarifa tarifa;
 
-        public int GetNumero 
+        public DateTime GetFechaVenta()
         {
-            get => numero;
-            set => numero = value;
-        }
-
-        public Sede GetSede
-        {
-            get => sede;
-            set => sede = value;
+            return this.fechaVenta;
 
         }
+        public void SetFechaVenta(DateTime valor)
+        {
 
-        public bool SonDeFechaYHoraSede(Sede sede)
+            this.fechaVenta = valor;
+        }
+
+        public TimeSpan GetHoraVenta()
+        {
+            return this.horaVenta;
+
+        }
+        public void SetHoraVenta(TimeSpan valor)
+        {
+
+            this.horaVenta = valor;
+        }
+
+        public int GetNumero()
+        {
+            return this.numero;
+
+        }
+        public void SetNumero(int valor)
+        {
+
+            this.numero = valor;
+        }
+
+        public Sede GetSede()
+        {
+            return this.sede;
+
+        }
+        public void SetSede(Sede valor)
+        {
+
+            this.sede = valor;
+        }
+
+        public float GetMonto()
+        {
+            return this.monto;
+
+        }
+        public void SetMonto(float valor)
+        {
+
+            this.monto = valor;
+        }
+
+        public Tarifa GetTarifa()
+        {
+            return this.tarifa;
+        }
+
+        public void SetTarifa(Tarifa unaTarifa)
+        {
+            this.tarifa = unaTarifa;
+        }
+
+        public bool SonDeFechaYHoraSede(DateTime fechaActual, Sede sede)
         {
             bool resultado = false;
 
-            DateTime fechaActual = DateTime.Today;
-            TimeSpan horaActual = DateTime.Now.TimeOfDay;
-            if (sede == this.sede && this.fechaVenta == fechaActual && this.horaVenta == horaActual)
+            DateTime fecha = fechaActual.Date;
+            int hora = fechaActual.TimeOfDay.Hours;
+            if (sede == this.sede && this.fechaVenta == fecha && this.horaVenta.Hours == hora )
             {
                 resultado = true;
-
 
             }
 
@@ -47,8 +98,5 @@ namespace ProyectoDSIPPAI.Clases.Entidades
             return resultado;
 
         }
-
-
-
     }
 }

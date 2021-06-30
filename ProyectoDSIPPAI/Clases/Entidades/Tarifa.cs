@@ -8,38 +8,78 @@ namespace ProyectoDSIPPAI.Clases.Entidades
 {
     public class Tarifa
     {
-        public DateTime fecha_fin_vigencia { get; set; }
-        public DateTime fecha_inicio_vigencia { get; set; }
-        public int monto { get; set; }
-        public int monto_adicional_guia { get; set; }
-        public TipoEntrada tipo_entrada { get; set; }
-        public TipoVisita tipo_visita { get; set; }
+        private DateTime fechaFinVigencia;
+        private DateTime fechaInicioVigencia;
+        private float monto;
+        private float montoAdicionalGuia;
+        private TipoEntrada tipoEntrada;
+        private TipoVisita tipoVisita;
 
-        public string conocer_tipo_visita()
+        public void SetFechaFinVigencia(DateTime fechaNueva)
         {
-            return tipo_visita.mostrar_nombre();
+            this.fechaFinVigencia = fechaNueva;
         }
 
-        public string conocer_tipo_entrada()
+        public void SetFechaInicioVigencia(DateTime fechaNueva)
         {
-            return tipo_visita.tipo_entrada.mostar_nombre();
+            this.fechaInicioVigencia = fechaNueva;
         }
 
-        public List<string> mostrar_montos_vigentes()
+        public void SetMonto(float montoNuevo)
         {
-            if (fecha_fin_vigencia >= DateTime.now())
+            this.monto = montoNuevo;
+        }
+
+        public void SetMontoAdicionalGuia(float montoNuevo)
+        {
+            this.montoAdicionalGuia = montoNuevo;
+        }
+
+        public void SetTipoEntrada(TipoEntrada tipoEntradaNueva)
+        {
+            this.tipoEntrada = tipoEntradaNueva;
+        }
+
+        public void SetTipoVisita(TipoVisita tipoVisitaNueva)
+        {
+            this.tipoVisita = tipoVisitaNueva;
+        }
+
+        public string ConocerTipoVisita()
+        {
+            return tipoVisita.ConocerNombre();
+        }
+
+        public string ConocerTipoEntrada()
+        {
+            return tipoEntrada.MostrarNombre();
+        }
+
+
+        public List<string> MostrarMontosVigentes()
+        {
+            List<string> lista = new List<string>();
+
+            int resultado = DateTime.Compare(fechaFinVigencia, DateTime.Now);
+
+            if (resultado >= 0)
             {
-                List<string> lista = new List<string>();
                 lista.Add(monto.ToString());
-                lista.Add(this.conocer_tipo_entrada());
-                lista.Add(this.conocer_tipo_visita());
-                return lista;
-            }
-            else
-            {
-                List<string> lista = new List<string>();
-                return lista;
-            }
+                lista.Add(this.tipoEntrada.MostrarNombre());
+                lista.Add(this.tipoVisita.MostrarNombre());
+            }                        
+            
+            return lista;
+        }
+
+        public DateTime GetFechaFinVigencia()
+        {
+            return this.fechaFinVigencia;
+        }
+
+        public float GetMonto()
+        {
+            return this.monto;
         }
     }
 }

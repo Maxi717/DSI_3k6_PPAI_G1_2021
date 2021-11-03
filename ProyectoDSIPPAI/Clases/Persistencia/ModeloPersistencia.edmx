@@ -1,0 +1,1048 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Persistencia.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DetalleExposicionPersistente">
+          <Key>
+            <PropertyRef Name="idObra" />
+            <PropertyRef Name="idExposicion" />
+          </Key>
+          <Property Name="lugarAsignado" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idObra" Type="int" Nullable="false" />
+          <Property Name="idExposicion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmpleadoPersistente">
+          <Key>
+            <PropertyRef Name="idEmpleado" />
+          </Key>
+          <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="codigoValidacion" Type="int" Nullable="false" />
+          <Property Name="cuit" Type="bigint" Nullable="false" />
+          <Property Name="dni" Type="int" Nullable="false" />
+          <Property Name="domicili" Type="varchar(max)" Nullable="false" />
+          <Property Name="fechaIngreso" Type="date" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="date" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="sexo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idSede" Type="int" Nullable="false" />
+          <Property Name="idEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EntradaPersistente">
+          <Key>
+            <PropertyRef Name="idEntrada" />
+          </Key>
+          <Property Name="idEntrada" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="monto" Type="int" Nullable="false" />
+          <Property Name="fechaVenta" Type="date" Nullable="false" />
+          <Property Name="horaVenta" Type="time" Precision="7" Nullable="false" />
+          <Property Name="idSede" Type="int" Nullable="false" />
+          <Property Name="idTarifa" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExposicionesPorSedePersistente">
+          <Key>
+            <PropertyRef Name="idExposicion" />
+            <PropertyRef Name="idSede" />
+          </Key>
+          <Property Name="idExposicion" Type="int" Nullable="false" />
+          <Property Name="idSede" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExposicionPersistente">
+          <Key>
+            <PropertyRef Name="idExposicion" />
+          </Key>
+          <Property Name="idExposicion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaFin" Type="date" Nullable="false" />
+          <Property Name="fechaFinReplanificada" Type="date" />
+          <Property Name="fechaInicio" Type="date" Nullable="false" />
+          <Property Name="fechaInicioReplanificada" Type="date" />
+          <Property Name="horaApertura" Type="time" Precision="7" Nullable="false" />
+          <Property Name="horaCierre" Type="time" Precision="7" Nullable="false" />
+          <Property Name="idEmpleado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ObraPersistente">
+          <Key>
+            <PropertyRef Name="codigoSensor" />
+          </Key>
+          <Property Name="codigoSensor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="alto" Type="float" Nullable="false" />
+          <Property Name="ancho" Type="float" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="duracionExtendida" Type="int" Nullable="false" />
+          <Property Name="duracionResumida" Type="int" Nullable="false" />
+          <Property Name="fechaCreacion" Type="date" Nullable="false" />
+          <Property Name="fechaPrimerIngreso" Type="date" Nullable="false" />
+          <Property Name="nombreObra" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="peso" Type="float" Nullable="false" />
+          <Property Name="valuacion" Type="float" Nullable="false" />
+          <Property Name="idEmpleado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReservaVisitaPersistente">
+          <Key>
+            <PropertyRef Name="idReservaVisita" />
+          </Key>
+          <Property Name="cantidadAlumnos" Type="int" Nullable="false" />
+          <Property Name="cantidadAlumnosConfirmada" Type="int" />
+          <Property Name="duracionEstimada" Type="int" />
+          <Property Name="fechaHoraCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fechaHoraReserva" Type="datetime" Nullable="false" />
+          <Property Name="horaFinReal" Type="time" Precision="0" />
+          <Property Name="horaInicioReal" Type="time" Precision="0" />
+          <Property Name="idReservaVisita" Type="int" Nullable="false" />
+          <Property Name="idSede" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SedePersistente">
+          <Key>
+            <PropertyRef Name="idSede" />
+          </Key>
+          <Property Name="cantMaximaVisitantes" Type="int" Nullable="false" />
+          <Property Name="cantMaxPorGuia" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idSede" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SesionPersistente">
+          <Key>
+            <PropertyRef Name="idSesion" />
+          </Key>
+          <Property Name="fechaHoraInicio" Type="datetime" Nullable="false" />
+          <Property Name="fechaHoraFin" Type="datetime" />
+          <Property Name="idSesion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TarifaPersistente">
+          <Key>
+            <PropertyRef Name="idTarifa" />
+          </Key>
+          <Property Name="idTarifa" Type="int" Nullable="false" />
+          <Property Name="fechaFinVigencia" Type="date" Nullable="false" />
+          <Property Name="fechaInicioVigencia" Type="date" Nullable="false" />
+          <Property Name="monto" Type="int" Nullable="false" />
+          <Property Name="montoAdicionalGuia" Type="int" Nullable="false" />
+          <Property Name="idTipoDeEntrada" Type="int" Nullable="false" />
+          <Property Name="idTipoVisita" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TarifasXSedePersistente">
+          <Key>
+            <PropertyRef Name="idSede" />
+            <PropertyRef Name="idTarifa" />
+          </Key>
+          <Property Name="idSede" Type="int" Nullable="false" />
+          <Property Name="idTarifa" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoDeEntradaPersistente">
+          <Key>
+            <PropertyRef Name="idTipoDeEntrada" />
+          </Key>
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idTipoDeEntrada" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoVisitaPersistente">
+          <Key>
+            <PropertyRef Name="idTipoVisita" />
+          </Key>
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idTipoVisita" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsuarioPersistente">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="caducidad" Type="date" />
+          <Property Name="contraseña" Type="varchar" MaxLength="30" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idEmpleado" Type="int" />
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DetalleExposicion_Obra">
+          <End Role="ObraPersistente" Type="Self.ObraPersistente" Multiplicity="1" />
+          <End Role="DetalleExposicionPersistente" Type="Self.DetalleExposicionPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ObraPersistente">
+              <PropertyRef Name="codigoSensor" />
+            </Principal>
+            <Dependent Role="DetalleExposicionPersistente">
+              <PropertyRef Name="idObra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleExposicionPersistente_ExposicionPersistente">
+          <End Role="ExposicionPersistente" Type="Self.ExposicionPersistente" Multiplicity="1" />
+          <End Role="DetalleExposicionPersistente" Type="Self.DetalleExposicionPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExposicionPersistente">
+              <PropertyRef Name="idExposicion" />
+            </Principal>
+            <Dependent Role="DetalleExposicionPersistente">
+              <PropertyRef Name="idExposicion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Sede">
+          <End Role="SedePersistente" Type="Self.SedePersistente" Multiplicity="1" />
+          <End Role="EmpleadoPersistente" Type="Self.EmpleadoPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SedePersistente">
+              <PropertyRef Name="idSede" />
+            </Principal>
+            <Dependent Role="EmpleadoPersistente">
+              <PropertyRef Name="idSede" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entrada_Sede">
+          <End Role="SedePersistente" Type="Self.SedePersistente" Multiplicity="1" />
+          <End Role="EntradaPersistente" Type="Self.EntradaPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SedePersistente">
+              <PropertyRef Name="idSede" />
+            </Principal>
+            <Dependent Role="EntradaPersistente">
+              <PropertyRef Name="idSede" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entrada_Tarifa">
+          <End Role="TarifaPersistente" Type="Self.TarifaPersistente" Multiplicity="1" />
+          <End Role="EntradaPersistente" Type="Self.EntradaPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TarifaPersistente">
+              <PropertyRef Name="idTarifa" />
+            </Principal>
+            <Dependent Role="EntradaPersistente">
+              <PropertyRef Name="idTarifa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExposicionesPorSedePersistente_ExposicionPersistente">
+          <End Role="ExposicionPersistente" Type="Self.ExposicionPersistente" Multiplicity="1" />
+          <End Role="ExposicionesPorSedePersistente" Type="Self.ExposicionesPorSedePersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExposicionPersistente">
+              <PropertyRef Name="idExposicion" />
+            </Principal>
+            <Dependent Role="ExposicionesPorSedePersistente">
+              <PropertyRef Name="idExposicion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExposicionesPorSedePersistente_SedePersistente">
+          <End Role="SedePersistente" Type="Self.SedePersistente" Multiplicity="1" />
+          <End Role="ExposicionesPorSedePersistente" Type="Self.ExposicionesPorSedePersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SedePersistente">
+              <PropertyRef Name="idSede" />
+            </Principal>
+            <Dependent Role="ExposicionesPorSedePersistente">
+              <PropertyRef Name="idSede" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExposicionPersistente_EmpleadoPersistente">
+          <End Role="EmpleadoPersistente" Type="Self.EmpleadoPersistente" Multiplicity="1" />
+          <End Role="ExposicionPersistente" Type="Self.ExposicionPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmpleadoPersistente">
+              <PropertyRef Name="idEmpleado" />
+            </Principal>
+            <Dependent Role="ExposicionPersistente">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ObraPersistente_EmpleadoPersistente">
+          <End Role="EmpleadoPersistente" Type="Self.EmpleadoPersistente" Multiplicity="1" />
+          <End Role="ObraPersistente" Type="Self.ObraPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmpleadoPersistente">
+              <PropertyRef Name="idEmpleado" />
+            </Principal>
+            <Dependent Role="ObraPersistente">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReservaVisitaPersistente_SedePersistente">
+          <End Role="SedePersistente" Type="Self.SedePersistente" Multiplicity="1" />
+          <End Role="ReservaVisitaPersistente" Type="Self.ReservaVisitaPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SedePersistente">
+              <PropertyRef Name="idSede" />
+            </Principal>
+            <Dependent Role="ReservaVisitaPersistente">
+              <PropertyRef Name="idSede" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sesion_Usuario">
+          <End Role="UsuarioPersistente" Type="Self.UsuarioPersistente" Multiplicity="0..1" />
+          <End Role="SesionPersistente" Type="Self.SesionPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsuarioPersistente">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="SesionPersistente">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TarifaPersistente_TipoDeEntradaPersistente">
+          <End Role="TipoDeEntradaPersistente" Type="Self.TipoDeEntradaPersistente" Multiplicity="1" />
+          <End Role="TarifaPersistente" Type="Self.TarifaPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDeEntradaPersistente">
+              <PropertyRef Name="idTipoDeEntrada" />
+            </Principal>
+            <Dependent Role="TarifaPersistente">
+              <PropertyRef Name="idTipoDeEntrada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TarifaPersistente_TipoVisitaPersistente1">
+          <End Role="TipoVisitaPersistente" Type="Self.TipoVisitaPersistente" Multiplicity="1" />
+          <End Role="TarifaPersistente" Type="Self.TarifaPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoVisitaPersistente">
+              <PropertyRef Name="idTipoVisita" />
+            </Principal>
+            <Dependent Role="TarifaPersistente">
+              <PropertyRef Name="idTipoVisita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TarifasXSede_Tarifa">
+          <End Role="TarifaPersistente" Type="Self.TarifaPersistente" Multiplicity="1" />
+          <End Role="TarifasXSedePersistente" Type="Self.TarifasXSedePersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TarifaPersistente">
+              <PropertyRef Name="idTarifa" />
+            </Principal>
+            <Dependent Role="TarifasXSedePersistente">
+              <PropertyRef Name="idTarifa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TarifasXSedePersistente_SedePersistente">
+          <End Role="SedePersistente" Type="Self.SedePersistente" Multiplicity="1" />
+          <End Role="TarifasXSedePersistente" Type="Self.TarifasXSedePersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SedePersistente">
+              <PropertyRef Name="idSede" />
+            </Principal>
+            <Dependent Role="TarifasXSedePersistente">
+              <PropertyRef Name="idSede" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioPersistente_EmpleadoPersistente">
+          <End Role="EmpleadoPersistente" Type="Self.EmpleadoPersistente" Multiplicity="0..1" />
+          <End Role="UsuarioPersistente" Type="Self.UsuarioPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmpleadoPersistente">
+              <PropertyRef Name="idEmpleado" />
+            </Principal>
+            <Dependent Role="UsuarioPersistente">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PersistenciaStoreContainer">
+          <EntitySet Name="DetalleExposicionPersistente" EntityType="Self.DetalleExposicionPersistente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmpleadoPersistente" EntityType="Self.EmpleadoPersistente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EntradaPersistente" EntityType="Self.EntradaPersistente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExposicionesPorSedePersistente" EntityType="Self.ExposicionesPorSedePersistente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExposicionPersistente" EntityType="Self.ExposicionPersistente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ObraPersistente" EntityType="Self.ObraPersistente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReservaVisitaPersistente" EntityType="Self.ReservaVisitaPersistente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SedePersistente" EntityType="Self.SedePersistente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SesionPersistente" EntityType="Self.SesionPersistente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TarifaPersistente" EntityType="Self.TarifaPersistente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TarifasXSedePersistente" EntityType="Self.TarifasXSedePersistente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoDeEntradaPersistente" EntityType="Self.TipoDeEntradaPersistente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoVisitaPersistente" EntityType="Self.TipoVisitaPersistente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioPersistente" EntityType="Self.UsuarioPersistente" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DetalleExposicion_Obra" Association="Self.FK_DetalleExposicion_Obra">
+            <End Role="ObraPersistente" EntitySet="ObraPersistente" />
+            <End Role="DetalleExposicionPersistente" EntitySet="DetalleExposicionPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleExposicionPersistente_ExposicionPersistente" Association="Self.FK_DetalleExposicionPersistente_ExposicionPersistente">
+            <End Role="ExposicionPersistente" EntitySet="ExposicionPersistente" />
+            <End Role="DetalleExposicionPersistente" EntitySet="DetalleExposicionPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Sede" Association="Self.FK_Empleado_Sede">
+            <End Role="SedePersistente" EntitySet="SedePersistente" />
+            <End Role="EmpleadoPersistente" EntitySet="EmpleadoPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entrada_Sede" Association="Self.FK_Entrada_Sede">
+            <End Role="SedePersistente" EntitySet="SedePersistente" />
+            <End Role="EntradaPersistente" EntitySet="EntradaPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entrada_Tarifa" Association="Self.FK_Entrada_Tarifa">
+            <End Role="TarifaPersistente" EntitySet="TarifaPersistente" />
+            <End Role="EntradaPersistente" EntitySet="EntradaPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExposicionesPorSedePersistente_ExposicionPersistente" Association="Self.FK_ExposicionesPorSedePersistente_ExposicionPersistente">
+            <End Role="ExposicionPersistente" EntitySet="ExposicionPersistente" />
+            <End Role="ExposicionesPorSedePersistente" EntitySet="ExposicionesPorSedePersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExposicionesPorSedePersistente_SedePersistente" Association="Self.FK_ExposicionesPorSedePersistente_SedePersistente">
+            <End Role="SedePersistente" EntitySet="SedePersistente" />
+            <End Role="ExposicionesPorSedePersistente" EntitySet="ExposicionesPorSedePersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExposicionPersistente_EmpleadoPersistente" Association="Self.FK_ExposicionPersistente_EmpleadoPersistente">
+            <End Role="EmpleadoPersistente" EntitySet="EmpleadoPersistente" />
+            <End Role="ExposicionPersistente" EntitySet="ExposicionPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ObraPersistente_EmpleadoPersistente" Association="Self.FK_ObraPersistente_EmpleadoPersistente">
+            <End Role="EmpleadoPersistente" EntitySet="EmpleadoPersistente" />
+            <End Role="ObraPersistente" EntitySet="ObraPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReservaVisitaPersistente_SedePersistente" Association="Self.FK_ReservaVisitaPersistente_SedePersistente">
+            <End Role="SedePersistente" EntitySet="SedePersistente" />
+            <End Role="ReservaVisitaPersistente" EntitySet="ReservaVisitaPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sesion_Usuario" Association="Self.FK_Sesion_Usuario">
+            <End Role="UsuarioPersistente" EntitySet="UsuarioPersistente" />
+            <End Role="SesionPersistente" EntitySet="SesionPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TarifaPersistente_TipoDeEntradaPersistente" Association="Self.FK_TarifaPersistente_TipoDeEntradaPersistente">
+            <End Role="TipoDeEntradaPersistente" EntitySet="TipoDeEntradaPersistente" />
+            <End Role="TarifaPersistente" EntitySet="TarifaPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TarifaPersistente_TipoVisitaPersistente1" Association="Self.FK_TarifaPersistente_TipoVisitaPersistente1">
+            <End Role="TipoVisitaPersistente" EntitySet="TipoVisitaPersistente" />
+            <End Role="TarifaPersistente" EntitySet="TarifaPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TarifasXSede_Tarifa" Association="Self.FK_TarifasXSede_Tarifa">
+            <End Role="TarifaPersistente" EntitySet="TarifaPersistente" />
+            <End Role="TarifasXSedePersistente" EntitySet="TarifasXSedePersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TarifasXSedePersistente_SedePersistente" Association="Self.FK_TarifasXSedePersistente_SedePersistente">
+            <End Role="SedePersistente" EntitySet="SedePersistente" />
+            <End Role="TarifasXSedePersistente" EntitySet="TarifasXSedePersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioPersistente_EmpleadoPersistente" Association="Self.FK_UsuarioPersistente_EmpleadoPersistente">
+            <End Role="EmpleadoPersistente" EntitySet="EmpleadoPersistente" />
+            <End Role="UsuarioPersistente" EntitySet="UsuarioPersistente" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Persistencia" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DetalleExposicionPersistente">
+          <Key>
+            <PropertyRef Name="idObra" />
+            <PropertyRef Name="idExposicion" />
+          </Key>
+          <Property Name="lugarAsignado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idObra" Type="Int32" Nullable="false" />
+          <Property Name="idExposicion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ObraPersistente" Relationship="Self.FK_DetalleExposicion_Obra" FromRole="DetalleExposicionPersistente" ToRole="ObraPersistente" />
+          <NavigationProperty Name="ExposicionPersistente" Relationship="Self.FK_DetalleExposicionPersistente_ExposicionPersistente" FromRole="DetalleExposicionPersistente" ToRole="ExposicionPersistente" />
+        </EntityType>
+        <EntityType Name="EmpleadoPersistente">
+          <Key>
+            <PropertyRef Name="idEmpleado" />
+          </Key>
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codigoValidacion" Type="Int32" Nullable="false" />
+          <Property Name="cuit" Type="Int64" Nullable="false" />
+          <Property Name="dni" Type="Int32" Nullable="false" />
+          <Property Name="domicili" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaIngreso" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sexo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idSede" Type="Int32" Nullable="false" />
+          <Property Name="idEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="SedePersistente" Relationship="Self.FK_Empleado_Sede" FromRole="EmpleadoPersistente" ToRole="SedePersistente" />
+          <NavigationProperty Name="ExposicionPersistente" Relationship="Self.FK_ExposicionPersistente_EmpleadoPersistente" FromRole="EmpleadoPersistente" ToRole="ExposicionPersistente" />
+          <NavigationProperty Name="ObraPersistente" Relationship="Self.FK_ObraPersistente_EmpleadoPersistente" FromRole="EmpleadoPersistente" ToRole="ObraPersistente" />
+          <NavigationProperty Name="UsuarioPersistente" Relationship="Self.FK_UsuarioPersistente_EmpleadoPersistente" FromRole="EmpleadoPersistente" ToRole="UsuarioPersistente" />
+        </EntityType>
+        <EntityType Name="EntradaPersistente">
+          <Key>
+            <PropertyRef Name="idEntrada" />
+          </Key>
+          <Property Name="idEntrada" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="monto" Type="Int32" Nullable="false" />
+          <Property Name="fechaVenta" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="horaVenta" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="idSede" Type="Int32" Nullable="false" />
+          <Property Name="idTarifa" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SedePersistente" Relationship="Self.FK_Entrada_Sede" FromRole="EntradaPersistente" ToRole="SedePersistente" />
+          <NavigationProperty Name="TarifaPersistente" Relationship="Self.FK_Entrada_Tarifa" FromRole="EntradaPersistente" ToRole="TarifaPersistente" />
+        </EntityType>
+        <EntityType Name="ExposicionPersistente">
+          <Key>
+            <PropertyRef Name="idExposicion" />
+          </Key>
+          <Property Name="idExposicion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaFin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaFinReplanificada" Type="DateTime" Precision="0" />
+          <Property Name="fechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaInicioReplanificada" Type="DateTime" Precision="0" />
+          <Property Name="horaApertura" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="horaCierre" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="idEmpleado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DetalleExposicionPersistente" Relationship="Self.FK_DetalleExposicionPersistente_ExposicionPersistente" FromRole="ExposicionPersistente" ToRole="DetalleExposicionPersistente" />
+          <NavigationProperty Name="EmpleadoPersistente" Relationship="Self.FK_ExposicionPersistente_EmpleadoPersistente" FromRole="ExposicionPersistente" ToRole="EmpleadoPersistente" />
+          <NavigationProperty Name="SedePersistente" Relationship="Self.ExposicionesPorSedePersistente" FromRole="ExposicionPersistente" ToRole="SedePersistente" />
+        </EntityType>
+        <EntityType Name="ObraPersistente">
+          <Key>
+            <PropertyRef Name="codigoSensor" />
+          </Key>
+          <Property Name="codigoSensor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="alto" Type="Double" Nullable="false" />
+          <Property Name="ancho" Type="Double" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="duracionExtendida" Type="Int32" Nullable="false" />
+          <Property Name="duracionResumida" Type="Int32" Nullable="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaPrimerIngreso" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="nombreObra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="peso" Type="Double" Nullable="false" />
+          <Property Name="valuacion" Type="Double" Nullable="false" />
+          <Property Name="idEmpleado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DetalleExposicionPersistente" Relationship="Self.FK_DetalleExposicion_Obra" FromRole="ObraPersistente" ToRole="DetalleExposicionPersistente" />
+          <NavigationProperty Name="EmpleadoPersistente" Relationship="Self.FK_ObraPersistente_EmpleadoPersistente" FromRole="ObraPersistente" ToRole="EmpleadoPersistente" />
+        </EntityType>
+        <EntityType Name="ReservaVisitaPersistente">
+          <Key>
+            <PropertyRef Name="idReservaVisita" />
+          </Key>
+          <Property Name="cantidadAlumnos" Type="Int32" Nullable="false" />
+          <Property Name="cantidadAlumnosConfirmada" Type="Int32" />
+          <Property Name="duracionEstimada" Type="Int32" />
+          <Property Name="fechaHoraCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaHoraReserva" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="horaFinReal" Type="Time" Precision="0" />
+          <Property Name="horaInicioReal" Type="Time" Precision="0" />
+          <Property Name="idReservaVisita" Type="Int32" Nullable="false" />
+          <Property Name="idSede" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SedePersistente" Relationship="Self.FK_ReservaVisitaPersistente_SedePersistente" FromRole="ReservaVisitaPersistente" ToRole="SedePersistente" />
+        </EntityType>
+        <EntityType Name="SedePersistente">
+          <Key>
+            <PropertyRef Name="idSede" />
+          </Key>
+          <Property Name="cantMaximaVisitantes" Type="Int32" Nullable="false" />
+          <Property Name="cantMaxPorGuia" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idSede" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="EmpleadoPersistente" Relationship="Self.FK_Empleado_Sede" FromRole="SedePersistente" ToRole="EmpleadoPersistente" />
+          <NavigationProperty Name="EntradaPersistente" Relationship="Self.FK_Entrada_Sede" FromRole="SedePersistente" ToRole="EntradaPersistente" />
+          <NavigationProperty Name="ReservaVisitaPersistente" Relationship="Self.FK_ReservaVisitaPersistente_SedePersistente" FromRole="SedePersistente" ToRole="ReservaVisitaPersistente" />
+          <NavigationProperty Name="ExposicionPersistente" Relationship="Self.ExposicionesPorSedePersistente" FromRole="SedePersistente" ToRole="ExposicionPersistente" />
+          <NavigationProperty Name="TarifaPersistente" Relationship="Self.TarifasXSedePersistente" FromRole="SedePersistente" ToRole="TarifaPersistente" />
+        </EntityType>
+        <EntityType Name="SesionPersistente">
+          <Key>
+            <PropertyRef Name="idSesion" />
+          </Key>
+          <Property Name="fechaHoraInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaHoraFin" Type="DateTime" Precision="3" />
+          <Property Name="idSesion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUsuario" Type="Int32" />
+          <NavigationProperty Name="UsuarioPersistente" Relationship="Self.FK_Sesion_Usuario" FromRole="SesionPersistente" ToRole="UsuarioPersistente" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TarifaPersistente">
+          <Key>
+            <PropertyRef Name="idTarifa" />
+          </Key>
+          <Property Name="idTarifa" Type="Int32" Nullable="false" />
+          <Property Name="fechaFinVigencia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaInicioVigencia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="monto" Type="Int32" Nullable="false" />
+          <Property Name="montoAdicionalGuia" Type="Int32" Nullable="false" />
+          <Property Name="idTipoDeEntrada" Type="Int32" Nullable="false" />
+          <Property Name="idTipoVisita" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EntradaPersistente" Relationship="Self.FK_Entrada_Tarifa" FromRole="TarifaPersistente" ToRole="EntradaPersistente" />
+          <NavigationProperty Name="TipoDeEntradaPersistente" Relationship="Self.FK_TarifaPersistente_TipoDeEntradaPersistente" FromRole="TarifaPersistente" ToRole="TipoDeEntradaPersistente" />
+          <NavigationProperty Name="TipoVisitaPersistente" Relationship="Self.FK_TarifaPersistente_TipoVisitaPersistente1" FromRole="TarifaPersistente" ToRole="TipoVisitaPersistente" />
+          <NavigationProperty Name="SedePersistente" Relationship="Self.TarifasXSedePersistente" FromRole="TarifaPersistente" ToRole="SedePersistente" />
+        </EntityType>
+        <EntityType Name="TipoDeEntradaPersistente">
+          <Key>
+            <PropertyRef Name="idTipoDeEntrada" />
+          </Key>
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idTipoDeEntrada" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="TarifaPersistente" Relationship="Self.FK_TarifaPersistente_TipoDeEntradaPersistente" FromRole="TipoDeEntradaPersistente" ToRole="TarifaPersistente" />
+        </EntityType>
+        <EntityType Name="TipoVisitaPersistente">
+          <Key>
+            <PropertyRef Name="idTipoVisita" />
+          </Key>
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idTipoVisita" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="TarifaPersistente" Relationship="Self.FK_TarifaPersistente_TipoVisitaPersistente1" FromRole="TipoVisitaPersistente" ToRole="TarifaPersistente" />
+        </EntityType>
+        <EntityType Name="UsuarioPersistente">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="caducidad" Type="DateTime" Precision="0" />
+          <Property Name="contraseña" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idEmpleado" Type="Int32" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="EmpleadoPersistente" Relationship="Self.FK_UsuarioPersistente_EmpleadoPersistente" FromRole="UsuarioPersistente" ToRole="EmpleadoPersistente" />
+          <NavigationProperty Name="SesionPersistente" Relationship="Self.FK_Sesion_Usuario" FromRole="UsuarioPersistente" ToRole="SesionPersistente" />
+        </EntityType>
+        <Association Name="FK_DetalleExposicion_Obra">
+          <End Role="ObraPersistente" Type="Self.ObraPersistente" Multiplicity="1" />
+          <End Role="DetalleExposicionPersistente" Type="Self.DetalleExposicionPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ObraPersistente">
+              <PropertyRef Name="codigoSensor" />
+            </Principal>
+            <Dependent Role="DetalleExposicionPersistente">
+              <PropertyRef Name="idObra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleExposicionPersistente_ExposicionPersistente">
+          <End Role="ExposicionPersistente" Type="Self.ExposicionPersistente" Multiplicity="1" />
+          <End Role="DetalleExposicionPersistente" Type="Self.DetalleExposicionPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExposicionPersistente">
+              <PropertyRef Name="idExposicion" />
+            </Principal>
+            <Dependent Role="DetalleExposicionPersistente">
+              <PropertyRef Name="idExposicion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Sede">
+          <End Role="SedePersistente" Type="Self.SedePersistente" Multiplicity="1" />
+          <End Role="EmpleadoPersistente" Type="Self.EmpleadoPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SedePersistente">
+              <PropertyRef Name="idSede" />
+            </Principal>
+            <Dependent Role="EmpleadoPersistente">
+              <PropertyRef Name="idSede" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExposicionPersistente_EmpleadoPersistente">
+          <End Role="EmpleadoPersistente" Type="Self.EmpleadoPersistente" Multiplicity="1" />
+          <End Role="ExposicionPersistente" Type="Self.ExposicionPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmpleadoPersistente">
+              <PropertyRef Name="idEmpleado" />
+            </Principal>
+            <Dependent Role="ExposicionPersistente">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ObraPersistente_EmpleadoPersistente">
+          <End Role="EmpleadoPersistente" Type="Self.EmpleadoPersistente" Multiplicity="1" />
+          <End Role="ObraPersistente" Type="Self.ObraPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmpleadoPersistente">
+              <PropertyRef Name="idEmpleado" />
+            </Principal>
+            <Dependent Role="ObraPersistente">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioPersistente_EmpleadoPersistente">
+          <End Role="EmpleadoPersistente" Type="Self.EmpleadoPersistente" Multiplicity="0..1" />
+          <End Role="UsuarioPersistente" Type="Self.UsuarioPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmpleadoPersistente">
+              <PropertyRef Name="idEmpleado" />
+            </Principal>
+            <Dependent Role="UsuarioPersistente">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entrada_Sede">
+          <End Role="SedePersistente" Type="Self.SedePersistente" Multiplicity="1" />
+          <End Role="EntradaPersistente" Type="Self.EntradaPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SedePersistente">
+              <PropertyRef Name="idSede" />
+            </Principal>
+            <Dependent Role="EntradaPersistente">
+              <PropertyRef Name="idSede" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entrada_Tarifa">
+          <End Role="TarifaPersistente" Type="Self.TarifaPersistente" Multiplicity="1" />
+          <End Role="EntradaPersistente" Type="Self.EntradaPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TarifaPersistente">
+              <PropertyRef Name="idTarifa" />
+            </Principal>
+            <Dependent Role="EntradaPersistente">
+              <PropertyRef Name="idTarifa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReservaVisitaPersistente_SedePersistente">
+          <End Role="SedePersistente" Type="Self.SedePersistente" Multiplicity="1" />
+          <End Role="ReservaVisitaPersistente" Type="Self.ReservaVisitaPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SedePersistente">
+              <PropertyRef Name="idSede" />
+            </Principal>
+            <Dependent Role="ReservaVisitaPersistente">
+              <PropertyRef Name="idSede" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sesion_Usuario">
+          <End Role="UsuarioPersistente" Type="Self.UsuarioPersistente" Multiplicity="0..1" />
+          <End Role="SesionPersistente" Type="Self.SesionPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsuarioPersistente">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="SesionPersistente">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TarifaPersistente_TipoDeEntradaPersistente">
+          <End Role="TipoDeEntradaPersistente" Type="Self.TipoDeEntradaPersistente" Multiplicity="1" />
+          <End Role="TarifaPersistente" Type="Self.TarifaPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDeEntradaPersistente">
+              <PropertyRef Name="idTipoDeEntrada" />
+            </Principal>
+            <Dependent Role="TarifaPersistente">
+              <PropertyRef Name="idTipoDeEntrada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TarifaPersistente_TipoVisitaPersistente1">
+          <End Role="TipoVisitaPersistente" Type="Self.TipoVisitaPersistente" Multiplicity="1" />
+          <End Role="TarifaPersistente" Type="Self.TarifaPersistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoVisitaPersistente">
+              <PropertyRef Name="idTipoVisita" />
+            </Principal>
+            <Dependent Role="TarifaPersistente">
+              <PropertyRef Name="idTipoVisita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ExposicionesPorSedePersistente">
+          <End Role="ExposicionPersistente" Type="Self.ExposicionPersistente" Multiplicity="*" />
+          <End Role="SedePersistente" Type="Self.SedePersistente" Multiplicity="*" />
+        </Association>
+        <Association Name="TarifasXSedePersistente">
+          <End Role="TarifaPersistente" Type="Self.TarifaPersistente" Multiplicity="*" />
+          <End Role="SedePersistente" Type="Self.SedePersistente" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DSI_PPAI_G1Entities4" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DetalleExposicionPersistente" EntityType="Self.DetalleExposicionPersistente" />
+          <EntitySet Name="EmpleadoPersistente" EntityType="Self.EmpleadoPersistente" />
+          <EntitySet Name="EntradaPersistente" EntityType="Self.EntradaPersistente" />
+          <EntitySet Name="ExposicionPersistente" EntityType="Self.ExposicionPersistente" />
+          <EntitySet Name="ObraPersistente" EntityType="Self.ObraPersistente" />
+          <EntitySet Name="ReservaVisitaPersistente" EntityType="Self.ReservaVisitaPersistente" />
+          <EntitySet Name="SedePersistente" EntityType="Self.SedePersistente" />
+          <EntitySet Name="SesionPersistente" EntityType="Self.SesionPersistente" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TarifaPersistente" EntityType="Self.TarifaPersistente" />
+          <EntitySet Name="TipoDeEntradaPersistente" EntityType="Self.TipoDeEntradaPersistente" />
+          <EntitySet Name="TipoVisitaPersistente" EntityType="Self.TipoVisitaPersistente" />
+          <EntitySet Name="UsuarioPersistente" EntityType="Self.UsuarioPersistente" />
+          <AssociationSet Name="FK_DetalleExposicion_Obra" Association="Self.FK_DetalleExposicion_Obra">
+            <End Role="ObraPersistente" EntitySet="ObraPersistente" />
+            <End Role="DetalleExposicionPersistente" EntitySet="DetalleExposicionPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleExposicionPersistente_ExposicionPersistente" Association="Self.FK_DetalleExposicionPersistente_ExposicionPersistente">
+            <End Role="ExposicionPersistente" EntitySet="ExposicionPersistente" />
+            <End Role="DetalleExposicionPersistente" EntitySet="DetalleExposicionPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Sede" Association="Self.FK_Empleado_Sede">
+            <End Role="SedePersistente" EntitySet="SedePersistente" />
+            <End Role="EmpleadoPersistente" EntitySet="EmpleadoPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExposicionPersistente_EmpleadoPersistente" Association="Self.FK_ExposicionPersistente_EmpleadoPersistente">
+            <End Role="EmpleadoPersistente" EntitySet="EmpleadoPersistente" />
+            <End Role="ExposicionPersistente" EntitySet="ExposicionPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ObraPersistente_EmpleadoPersistente" Association="Self.FK_ObraPersistente_EmpleadoPersistente">
+            <End Role="EmpleadoPersistente" EntitySet="EmpleadoPersistente" />
+            <End Role="ObraPersistente" EntitySet="ObraPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioPersistente_EmpleadoPersistente" Association="Self.FK_UsuarioPersistente_EmpleadoPersistente">
+            <End Role="EmpleadoPersistente" EntitySet="EmpleadoPersistente" />
+            <End Role="UsuarioPersistente" EntitySet="UsuarioPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entrada_Sede" Association="Self.FK_Entrada_Sede">
+            <End Role="SedePersistente" EntitySet="SedePersistente" />
+            <End Role="EntradaPersistente" EntitySet="EntradaPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entrada_Tarifa" Association="Self.FK_Entrada_Tarifa">
+            <End Role="TarifaPersistente" EntitySet="TarifaPersistente" />
+            <End Role="EntradaPersistente" EntitySet="EntradaPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReservaVisitaPersistente_SedePersistente" Association="Self.FK_ReservaVisitaPersistente_SedePersistente">
+            <End Role="SedePersistente" EntitySet="SedePersistente" />
+            <End Role="ReservaVisitaPersistente" EntitySet="ReservaVisitaPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sesion_Usuario" Association="Self.FK_Sesion_Usuario">
+            <End Role="UsuarioPersistente" EntitySet="UsuarioPersistente" />
+            <End Role="SesionPersistente" EntitySet="SesionPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TarifaPersistente_TipoDeEntradaPersistente" Association="Self.FK_TarifaPersistente_TipoDeEntradaPersistente">
+            <End Role="TipoDeEntradaPersistente" EntitySet="TipoDeEntradaPersistente" />
+            <End Role="TarifaPersistente" EntitySet="TarifaPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TarifaPersistente_TipoVisitaPersistente1" Association="Self.FK_TarifaPersistente_TipoVisitaPersistente1">
+            <End Role="TipoVisitaPersistente" EntitySet="TipoVisitaPersistente" />
+            <End Role="TarifaPersistente" EntitySet="TarifaPersistente" />
+          </AssociationSet>
+          <AssociationSet Name="ExposicionesPorSedePersistente" Association="Self.ExposicionesPorSedePersistente">
+            <End Role="ExposicionPersistente" EntitySet="ExposicionPersistente" />
+            <End Role="SedePersistente" EntitySet="SedePersistente" />
+          </AssociationSet>
+          <AssociationSet Name="TarifasXSedePersistente" Association="Self.TarifasXSedePersistente">
+            <End Role="TarifaPersistente" EntitySet="TarifaPersistente" />
+            <End Role="SedePersistente" EntitySet="SedePersistente" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PersistenciaStoreContainer" CdmEntityContainer="DSI_PPAI_G1Entities4">
+          <EntitySetMapping Name="DetalleExposicionPersistente">
+            <EntityTypeMapping TypeName="Persistencia.DetalleExposicionPersistente">
+              <MappingFragment StoreEntitySet="DetalleExposicionPersistente">
+                <ScalarProperty Name="lugarAsignado" ColumnName="lugarAsignado" />
+                <ScalarProperty Name="idObra" ColumnName="idObra" />
+                <ScalarProperty Name="idExposicion" ColumnName="idExposicion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmpleadoPersistente">
+            <EntityTypeMapping TypeName="Persistencia.EmpleadoPersistente">
+              <MappingFragment StoreEntitySet="EmpleadoPersistente">
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="codigoValidacion" ColumnName="codigoValidacion" />
+                <ScalarProperty Name="cuit" ColumnName="cuit" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="domicili" ColumnName="domicili" />
+                <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="idSede" ColumnName="idSede" />
+                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EntradaPersistente">
+            <EntityTypeMapping TypeName="Persistencia.EntradaPersistente">
+              <MappingFragment StoreEntitySet="EntradaPersistente">
+                <ScalarProperty Name="idEntrada" ColumnName="idEntrada" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="fechaVenta" ColumnName="fechaVenta" />
+                <ScalarProperty Name="horaVenta" ColumnName="horaVenta" />
+                <ScalarProperty Name="idSede" ColumnName="idSede" />
+                <ScalarProperty Name="idTarifa" ColumnName="idTarifa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExposicionPersistente">
+            <EntityTypeMapping TypeName="Persistencia.ExposicionPersistente">
+              <MappingFragment StoreEntitySet="ExposicionPersistente">
+                <ScalarProperty Name="idExposicion" ColumnName="idExposicion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+                <ScalarProperty Name="fechaFinReplanificada" ColumnName="fechaFinReplanificada" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="fechaInicioReplanificada" ColumnName="fechaInicioReplanificada" />
+                <ScalarProperty Name="horaApertura" ColumnName="horaApertura" />
+                <ScalarProperty Name="horaCierre" ColumnName="horaCierre" />
+                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ObraPersistente">
+            <EntityTypeMapping TypeName="Persistencia.ObraPersistente">
+              <MappingFragment StoreEntitySet="ObraPersistente">
+                <ScalarProperty Name="codigoSensor" ColumnName="codigoSensor" />
+                <ScalarProperty Name="alto" ColumnName="alto" />
+                <ScalarProperty Name="ancho" ColumnName="ancho" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="duracionExtendida" ColumnName="duracionExtendida" />
+                <ScalarProperty Name="duracionResumida" ColumnName="duracionResumida" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaPrimerIngreso" ColumnName="fechaPrimerIngreso" />
+                <ScalarProperty Name="nombreObra" ColumnName="nombreObra" />
+                <ScalarProperty Name="peso" ColumnName="peso" />
+                <ScalarProperty Name="valuacion" ColumnName="valuacion" />
+                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReservaVisitaPersistente">
+            <EntityTypeMapping TypeName="Persistencia.ReservaVisitaPersistente">
+              <MappingFragment StoreEntitySet="ReservaVisitaPersistente">
+                <ScalarProperty Name="cantidadAlumnos" ColumnName="cantidadAlumnos" />
+                <ScalarProperty Name="cantidadAlumnosConfirmada" ColumnName="cantidadAlumnosConfirmada" />
+                <ScalarProperty Name="duracionEstimada" ColumnName="duracionEstimada" />
+                <ScalarProperty Name="fechaHoraCreacion" ColumnName="fechaHoraCreacion" />
+                <ScalarProperty Name="fechaHoraReserva" ColumnName="fechaHoraReserva" />
+                <ScalarProperty Name="horaFinReal" ColumnName="horaFinReal" />
+                <ScalarProperty Name="horaInicioReal" ColumnName="horaInicioReal" />
+                <ScalarProperty Name="idReservaVisita" ColumnName="idReservaVisita" />
+                <ScalarProperty Name="idSede" ColumnName="idSede" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SedePersistente">
+            <EntityTypeMapping TypeName="Persistencia.SedePersistente">
+              <MappingFragment StoreEntitySet="SedePersistente">
+                <ScalarProperty Name="cantMaximaVisitantes" ColumnName="cantMaximaVisitantes" />
+                <ScalarProperty Name="cantMaxPorGuia" ColumnName="cantMaxPorGuia" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idSede" ColumnName="idSede" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SesionPersistente">
+            <EntityTypeMapping TypeName="Persistencia.SesionPersistente">
+              <MappingFragment StoreEntitySet="SesionPersistente">
+                <ScalarProperty Name="fechaHoraInicio" ColumnName="fechaHoraInicio" />
+                <ScalarProperty Name="fechaHoraFin" ColumnName="fechaHoraFin" />
+                <ScalarProperty Name="idSesion" ColumnName="idSesion" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Persistencia.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TarifaPersistente">
+            <EntityTypeMapping TypeName="Persistencia.TarifaPersistente">
+              <MappingFragment StoreEntitySet="TarifaPersistente">
+                <ScalarProperty Name="idTarifa" ColumnName="idTarifa" />
+                <ScalarProperty Name="fechaFinVigencia" ColumnName="fechaFinVigencia" />
+                <ScalarProperty Name="fechaInicioVigencia" ColumnName="fechaInicioVigencia" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="montoAdicionalGuia" ColumnName="montoAdicionalGuia" />
+                <ScalarProperty Name="idTipoDeEntrada" ColumnName="idTipoDeEntrada" />
+                <ScalarProperty Name="idTipoVisita" ColumnName="idTipoVisita" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoDeEntradaPersistente">
+            <EntityTypeMapping TypeName="Persistencia.TipoDeEntradaPersistente">
+              <MappingFragment StoreEntitySet="TipoDeEntradaPersistente">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idTipoDeEntrada" ColumnName="idTipoDeEntrada" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoVisitaPersistente">
+            <EntityTypeMapping TypeName="Persistencia.TipoVisitaPersistente">
+              <MappingFragment StoreEntitySet="TipoVisitaPersistente">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idTipoVisita" ColumnName="idTipoVisita" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioPersistente">
+            <EntityTypeMapping TypeName="Persistencia.UsuarioPersistente">
+              <MappingFragment StoreEntitySet="UsuarioPersistente">
+                <ScalarProperty Name="caducidad" ColumnName="caducidad" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ExposicionesPorSedePersistente" TypeName="Persistencia.ExposicionesPorSedePersistente" StoreEntitySet="ExposicionesPorSedePersistente">
+            <EndProperty Name="ExposicionPersistente">
+              <ScalarProperty Name="idExposicion" ColumnName="idExposicion" />
+            </EndProperty>
+            <EndProperty Name="SedePersistente">
+              <ScalarProperty Name="idSede" ColumnName="idSede" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TarifasXSedePersistente" TypeName="Persistencia.TarifasXSedePersistente" StoreEntitySet="TarifasXSedePersistente">
+            <EndProperty Name="TarifaPersistente">
+              <ScalarProperty Name="idTarifa" ColumnName="idTarifa" />
+            </EndProperty>
+            <EndProperty Name="SedePersistente">
+              <ScalarProperty Name="idSede" ColumnName="idSede" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

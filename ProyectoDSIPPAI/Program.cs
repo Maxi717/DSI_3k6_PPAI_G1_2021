@@ -34,6 +34,9 @@ namespace ProyectoDSIPPAI
             unaTarifa.SetMontoAdicionalGuia(0);
             Sede unaSede = new Sede();
             unaSede.SetCantidadMaximaVisitantes(400);
+            
+            unaSede.SetCantidadMaximaVisitantes(4);
+            
             unaSede.SetCantMaxPorGuia(60);
             unaSede.SetNombre("SEDE ABSTRACTA");
             List<Tarifa> tarifas = new List<Tarifa>() { unaTarifa };
@@ -69,7 +72,8 @@ namespace ProyectoDSIPPAI
 
             PantallaSala pantallaSala = new PantallaSala(unaSede.GetCantidadMaximaVisitantes());
             PantallaEntrada pantallaEntrada = new PantallaEntrada(unaSede.GetCantidadMaximaVisitantes());
-            GestorVentaEntrada gestor = new GestorVentaEntrada(pantallaEntrada, pantallaSala);
+          
+            GestorVentaEntrada gestor = new GestorVentaEntrada(pantallaEntrada,pantallaSala);
             pantallaSala.Show();
             pantallaEntrada.Show();
             Application.Run(new PantallaVentaEntrada(sesion, gestor));

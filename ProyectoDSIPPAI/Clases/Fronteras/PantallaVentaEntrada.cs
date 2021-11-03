@@ -20,6 +20,7 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
         public PantallaVentaEntrada(Sesion sesion, GestorVentaEntrada gestor)
         {
             InitializeComponent();
+
             this.gestor = gestor;
             gestor.OpcionVentaEntradas(this, sesion);
         }
@@ -29,7 +30,6 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             int indiceTarifa = (int)grdTarifas.CurrentRow.Cells[3].Value;
             this.tarifaSeleccionada = gestor.GetTarifas()[indiceTarifa];
             gestor.TomarTarifasSeleccionadas(this, indiceTarifa);
-
 
         }
 
@@ -66,8 +66,7 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             btnCantidadEntradas.Enabled = true;
 
         }
-
-        // aa:bb minutos / 60 = aa --> minutos % 60 = b
+       
 
         private void TomarCantidadEntradas(object sender, EventArgs e)
         {
@@ -78,8 +77,15 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             else
             {
                 int cantidad = int.Parse(txtCantidad.Text);
-                gestor.CantidadEntradasAEmitir(this, cantidad, tarifaSeleccionada.GetMonto());
-            }
+                
+                bool resultado = gestor.CantidadEntradasAEmitir(this, cantidad, tarifaSeleccionada.GetMonto());
+
+                if ( ! resultado)
+                {
+                    MessageBox.Show("La cantidad de entradas excede a la capacidad actual de la sede.");
+                    btnConfirmar.Enabled = false;
+                }
+            }   
             
         }
 

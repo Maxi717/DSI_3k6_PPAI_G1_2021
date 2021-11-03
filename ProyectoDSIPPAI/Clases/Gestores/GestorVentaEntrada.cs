@@ -7,11 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using ProyectoDSIPPAI.Clases.Persistencia;
 
 namespace ProyectoDSIPPAI.Clases.Gestores
 {
-    public class GestorVentaEntrada
+    public class GestorVentaEntrada : ISujetoVisitante
     {
+        
         private Empleado logueadoEmpleado;
         private List<Tarifa> tarifas;
         private Usuario usuario;
@@ -19,11 +21,13 @@ namespace ProyectoDSIPPAI.Clases.Gestores
         private int duracionExpo;
         private PantallaEntrada pantallaEntrada;
         private PantallaSala pantallaSala;
+        private List<IObservadorVisitante> suscriptores;
 
         public GestorVentaEntrada(PantallaEntrada pantallaEnt, PantallaSala pantallaSal)
         {
             this.pantallaEntrada = pantallaEnt;
-            this.pantallaSala = pantallaSal;
+            this.pantallaSala = pantallaSal;         
+
         }
 
         public List<Tarifa> GetTarifas()
@@ -58,6 +62,7 @@ namespace ProyectoDSIPPAI.Clases.Gestores
             BuscarSede();
             List<List<string>> tarifas = BuscarTarifasDeSede();
             pantalla.MostrarTarifasVigentes(tarifas);
+
         }
 
 
@@ -95,7 +100,7 @@ namespace ProyectoDSIPPAI.Clases.Gestores
             return duracionExposicionesVigentes;
         }
 
-        public void CantidadEntradasAEmitir(PantallaVentaEntrada pantalla , int cantidadEntradas, float precioUnitario)
+        public bool CantidadEntradasAEmitir(PantallaVentaEntrada pantalla , int cantidadEntradas, float precioUnitario)
         {
 
             int capacidadMaxima = BuscarCapacidadSede();
@@ -107,7 +112,11 @@ namespace ProyectoDSIPPAI.Clases.Gestores
             {
                 float precioTotal = CalcularTotalVenta(cantidadEntradas, precioUnitario);
                 pantalla.MostrarDetalleEntradas(precioTotal);
+                
             }
+
+            return validacion;
+            
         }
 
         public void TomarConfirmacionVenta(int cantidadEntradas, Tarifa tarifa)
@@ -122,8 +131,12 @@ namespace ProyectoDSIPPAI.Clases.Gestores
 
         public void ActualizarVisitantesEnPantallas(int cantidadASumar)
         {
-            pantallaSala.ActualizarCantidadVisitantes(cantidadASumar);
-            pantallaEntrada.ActualizarCantidadVisitantes(cantidadASumar);
+            List<IObservadorVisitante> pantallas = new List<IObservadorVisitante>();
+            pantallas.Add(this.pantallaSala);
+            pantallas.Add(this.pantallaEntrada);
+                
+            this.Suscribir(pantallas);
+            this.Notificar(cantidadASumar);
         }
 
         public void ImprimirEntradas(List<Entrada> entradas)
@@ -185,17 +198,20 @@ namespace ProyectoDSIPPAI.Clases.Gestores
         {
             
             int cantidadVisitantesEnSede = 0;
-            DataTable tablaEntradas = new DataTable();
+            //DataTable tablaEntradas = new DataTable();
 
             List<Entrada> listaEntrada = new List<Entrada>();
 
             //Acceso a base
+            var db = new PersistenciaEntities();
+
+            List<EntradaPersistente> lista = db.EntradaPersistente.Where(x => true).ToList();
 
 
             foreach (Entrada unaEntrada in listaEntrada)
             {
               
-                if (unaEntrada.SonDeFechaYHoraSede(fechaHoraActual, this.sedeActual))
+                if (unaEntrada.SonDeFechaYHoraSede(fechaHoraActual, unaEntrada.GetSede()))
                 {
                     cantidadVisitantesEnSede += 1;
                 }
@@ -275,14 +291,7 @@ namespace ProyectoDSIPPAI.Clases.Gestores
         public bool ValidarLimiteVisitantes(int capacidadMaxima, int cantidadEnSede, int cantidadPorVenir, int cantidadEntradasAEmitir)
         {
             int cantidadTotal = cantidadEnSede + cantidadPorVenir + cantidadEntradasAEmitir;
-            if (capacidadMaxima >= cantidadTotal)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (capacidadMaxima >= cantidadTotal);
         }
         
         public float CalcularTotalVenta(int cantidadEntradas, float precioEntrada)
@@ -295,5 +304,28 @@ namespace ProyectoDSIPPAI.Clases.Gestores
         {
             this.tarifas = tarifas;
         }
+
+
+        public void Notificar(int cantidadNuevasEntradas)
+        {
+            foreach (IObservadorVisitante suscriptor in suscriptores)
+            {
+                suscriptor.Actualizar(cantidadNuevasEntradas);
+            }
+        }
+       
+        public void Suscribir(List<IObservadorVisitante> suscriptores) 
+        {
+            this.suscriptores = suscriptores; 
+        }
+
+
+
+        public void Quitar(IObservadorVisitante suscriptor)
+        {
+
+        }
+
+
     }
 }

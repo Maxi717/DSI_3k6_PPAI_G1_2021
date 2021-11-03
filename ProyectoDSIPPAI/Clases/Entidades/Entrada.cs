@@ -81,22 +81,22 @@ namespace ProyectoDSIPPAI.Clases.Entidades
             this.tarifa = unaTarifa;
         }
 
-        public bool SonDeFechaYHoraSede(DateTime fechaActual, Sede sede)
+        public bool SonDeFechaYHoraSede(DateTime fechaActual, string nombreSede)
         {
             bool resultado = false;
 
             DateTime fecha = fechaActual.Date;
             int hora = fechaActual.TimeOfDay.Hours;
-            if (sede == this.sede && this.fechaVenta == fecha && this.horaVenta.Hours == hora )
+            if (nombreSede == this.sede.GetNombre() && this.fechaVenta == fecha && this.horaVenta.Hours == hora )
             {
                 resultado = true;
 
             }
 
-
-
             return resultado;
 
+
+            // EntradaPersistente
         }
     }
 }

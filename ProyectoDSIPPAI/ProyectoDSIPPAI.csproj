@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
@@ -53,8 +59,11 @@
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,6 +79,8 @@
     <Compile Include="Clases\Entidades\Empleado.cs" />
     <Compile Include="Clases\Entidades\Entrada.cs" />
     <Compile Include="Clases\Entidades\Exposicion.cs" />
+    <Compile Include="Clases\Entidades\IObservadorVisitante.cs" />
+    <Compile Include="Clases\Entidades\ISujetoVisitante.cs" />
     <Compile Include="Clases\Entidades\Obra.cs" />
     <Compile Include="Clases\Entidades\ReservaVisita.cs" />
     <Compile Include="Clases\Entidades\Sede.cs" />
@@ -103,6 +114,60 @@
       <DependentUpon>PantallaVentaEntrada.cs</DependentUpon>
     </Compile>
     <Compile Include="Clases\Gestores\GestorVentaEntrada.cs" />
+    <Compile Include="Clases\Persistencia\DetalleExposicionPersistente.cs">
+      <DependentUpon>ModeloPersistencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Persistencia\EmpleadoPersistente.cs">
+      <DependentUpon>ModeloPersistencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Persistencia\EntradaPersistente.cs">
+      <DependentUpon>ModeloPersistencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Persistencia\ExposicionPersistente.cs">
+      <DependentUpon>ModeloPersistencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Persistencia\ModeloPersistencia.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloPersistencia.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Persistencia\ModeloPersistencia.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloPersistencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Persistencia\ModeloPersistencia.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloPersistencia.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Persistencia\ObraPersistente.cs">
+      <DependentUpon>ModeloPersistencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Persistencia\ReservaVisitaPersistente.cs">
+      <DependentUpon>ModeloPersistencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Persistencia\SedePersistente.cs">
+      <DependentUpon>ModeloPersistencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Persistencia\SesionPersistente.cs">
+      <DependentUpon>ModeloPersistencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Persistencia\sysdiagrams.cs">
+      <DependentUpon>ModeloPersistencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Persistencia\TarifaPersistente.cs">
+      <DependentUpon>ModeloPersistencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Persistencia\TipoDeEntradaPersistente.cs">
+      <DependentUpon>ModeloPersistencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Persistencia\TipoVisitaPersistente.cs">
+      <DependentUpon>ModeloPersistencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Persistencia\UsuarioPersistente.cs">
+      <DependentUpon>ModeloPersistencia.tt</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +207,13 @@
     <None Include="Clases\Fronteras\datosEntrada.xss">
       <DependentUpon>datosEntrada.xsd</DependentUpon>
     </None>
+    <EntityDeploy Include="Clases\Persistencia\ModeloPersistencia.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModeloPersistencia.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Clases\Persistencia\ModeloPersistencia.edmx.diagram">
+      <DependentUpon>ModeloPersistencia.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -157,6 +229,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Clases\Persistencia\ModeloPersistencia.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloPersistencia.edmx</DependentUpon>
+      <LastGenOutput>ModeloPersistencia.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Clases\Persistencia\ModeloPersistencia.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloPersistencia.edmx</DependentUpon>
+      <LastGenOutput>ModeloPersistencia.cs</LastGenOutput>
+    </Content>
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -171,5 +253,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

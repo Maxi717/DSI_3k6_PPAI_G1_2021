@@ -49,10 +49,6 @@ namespace ProyectoDSIPPAI.Clases.Entidades
             this.usuario = usuario_nuevo;
         }
 
-        //public Usuario conocer_usuario()
-        //{
-        //    //jjjjjjjjjjjjjjjjj return usuario.getUsuario();
-        //}
         
         public Empleado GetEmpleadoEnSesion()
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoDSIPPAI.Clases.Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ProyectoDSIPPAI.Clases.Fronteras
 {
-    public partial class PantallaSala : Form
+    public partial class PantallaSala : Form , IObservadorVisitante
     {
         public PantallaSala(int capacidad)
         {
@@ -18,10 +19,14 @@ namespace ProyectoDSIPPAI.Clases.Fronteras
             lblCapacidad.Text = capacidad.ToString();
         }
 
-        public void ActualizarCantidadVisitantes(int cantidadASumar)
+        public void Actualizar(int cantidad)
         {
-            int cantidadActual = int.Parse(lblCantVisitantes.Text);
-            lblCantVisitantes.Text = (cantidadActual + cantidadASumar).ToString();
+            SetCantidadVisitantes(cantidad);
+        }
+
+        public void SetCantidadVisitantes(int cantidad)
+        {
+            lblCantVisitantes.Text = (int.Parse(lblCantVisitantes.Text) + cantidad).ToString();
         }
     }
 }

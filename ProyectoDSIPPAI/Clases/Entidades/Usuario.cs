@@ -12,7 +12,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         private string nombre;
         private string contra;
         private Empleado empleado;
-
+        private int id;
 
         public Usuario(DateTime caducidad, string nombre, string contra, Empleado empleado)
         {
@@ -74,6 +74,17 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         {
             return this.empleado;
         }
+
+        public void SetId(int id)
+        {
+            this.id = id;
+        }
+
+        public int GetId()
+        {
+            return this.id;
+        }
+
 
     }
 }

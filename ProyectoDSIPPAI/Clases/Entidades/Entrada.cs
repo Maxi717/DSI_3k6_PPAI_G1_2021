@@ -11,7 +11,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         DateTime fechaVenta;
         TimeSpan horaVenta;
         int numero;
-        float monto;
+        float monto;        
 
         Sede sede;
         Tarifa tarifa;
@@ -95,8 +95,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
 
             return resultado;
 
-
-            // EntradaPersistente
+            
         }
     }
 }

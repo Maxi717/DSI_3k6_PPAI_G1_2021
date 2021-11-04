@@ -9,7 +9,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
     public class TipoVisita
     {
         private string nombre { get; set; }
-
+        private int id;
         public void SetNombre(string nombreNuevo)
         {
             this.nombre = nombreNuevo;
@@ -23,6 +23,16 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         public string MostrarNombre()
         {
             return nombre;
+        }
+
+        public void SetId(int id)
+        {
+            this.id = id;
+        }
+
+        public int GetId()
+        {
+            return this.id;
         }
     }
 }

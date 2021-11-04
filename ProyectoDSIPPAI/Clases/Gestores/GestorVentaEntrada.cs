@@ -124,6 +124,14 @@ namespace ProyectoDSIPPAI.Clases.Gestores
             int ultimoNro = BuscarUltimoNroEntrada();
             List<Entrada> entradasAImprimir = GenerarEntradas(ultimoNro, cantidadEntradas, tarifa);
             ImprimirEntradas(entradasAImprimir);
+
+            EntradaAD entradaAD = new EntradaAD();
+            foreach (Entrada entrada in entradasAImprimir)
+            {
+                entradaAD.Desmaterializar(entrada);
+            }
+
+
             ActualizarVisitantesEnPantallas(cantidadEntradas);
 
 
@@ -160,15 +168,21 @@ namespace ProyectoDSIPPAI.Clases.Gestores
                 entradaGenerada.SetTarifa(tarifa);
                 entradaGenerada.SetSede(this.sedeActual);
                 entradasGeneradas.Add(entradaGenerada);
+
             }
+
+
+
             return entradasGeneradas;
         }
 
         public int BuscarUltimoNroEntrada()
-        {
-            List<Entrada> entradas = new List<Entrada>();
+        {            
             int numeroMayor = 0;
-            // ACÁ IRÍA CODIGO QUE LLENA LA LIST CON OBJETOS ENTRADA
+
+            EntradaAD accesoADatos = new EntradaAD();
+            List<Entrada> entradas = accesoADatos.ObtenerEntradas();
+           
             foreach (Entrada entrada in entradas)
             {
                 int numeroEntrada = entrada.GetNumero();
@@ -195,23 +209,17 @@ namespace ProyectoDSIPPAI.Clases.Gestores
         }
 
         public int BuscarVisitantesEnSede(DateTime fechaHoraActual)
-        {
-            
+        {           
             int cantidadVisitantesEnSede = 0;
-            //DataTable tablaEntradas = new DataTable();
+            
 
-            List<Entrada> listaEntrada = new List<Entrada>();
-
-            //Acceso a base
-            var db = new PersistenciaEntities();
-
-            List<EntradaPersistente> lista = db.EntradaPersistente.Where(x => true).ToList();
-
+            EntradaAD accesoADatos = new EntradaAD();
+            List<Entrada> listaEntrada = accesoADatos.ObtenerEntradas();
 
             foreach (Entrada unaEntrada in listaEntrada)
             {
-              
-                if (unaEntrada.SonDeFechaYHoraSede(fechaHoraActual, unaEntrada.GetSede()))
+                  
+                if (unaEntrada.SonDeFechaYHoraSede(fechaHoraActual, unaEntrada.GetSede().GetNombre()))
                 {
                     cantidadVisitantesEnSede += 1;
                 }
@@ -219,25 +227,6 @@ namespace ProyectoDSIPPAI.Clases.Gestores
             }
 
             return cantidadVisitantesEnSede;
-
-            //tablaEntradas = ADEntradas.ObtenerListadoEntradas();
-
-            // 
-            //for (int i = 0; i < tablaEntradas.Rows.Count; i++)
-            //{
-            //    DateTime fechaVenta = DateTime.Parse(tablaEntradas.Rows[i][0].ToString());
-            //    TimeSpan horaVenta = TimeSpan.Parse(tablaEntradas.Rows[i][1].ToString());
-            //    int numero = int.Parse(tablaEntradas.Rows[i][2].ToString());
-            //    float monto = float.Parse(tablaEntradas.Rows[i][3].ToString());
-            //    int sedeEntrada = int.Parse(tablaEntradas.Rows[i][4].ToString());
-            //    int tarifa = int.Parse(tablaEntradas.Rows[i][5].ToString());
-            //    Entrada entrada = new Entrada(fechaVenta, horaVenta, numero, monto, sedeEntrada, tarifa);
-            //    if (entrada.SonDeFechaYHoraSede(fechaHoraActual, this.sedeActual))
-            //    {
-            //        cantidadVisitantesEnSede += 1;
-            //    }
-
-            //}
         }
         public int BuscarReservasParaAsistir(DateTime fechaHoraActual)
         {

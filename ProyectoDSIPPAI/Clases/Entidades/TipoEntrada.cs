@@ -9,6 +9,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
     public class TipoEntrada
     {
         private string nombre { get; set; }
+        private int id;
 
         public string GetNombre()
         {
@@ -24,6 +25,17 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         {
             this.nombre = nombreNuevo;
         }
+
+        public void SetId(int id)
+        {
+            this.id = id;
+        }
+
+        public int GetId()
+        {
+            return this.id;
+        }
+
 
     }
 }

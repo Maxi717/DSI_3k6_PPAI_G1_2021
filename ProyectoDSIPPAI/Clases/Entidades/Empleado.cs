@@ -20,6 +20,8 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         string sexo;
         int telefono;
         Sede sedeDondeTrabaja;
+        private int idEmpleado;
+        int fkSede;
 
 
         public string GetNombre()
@@ -159,5 +161,17 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         {
             return this.sedeDondeTrabaja;
         }
+
+        public void SetId(int id)
+        {
+            this.idEmpleado = id;
+        }
+
+        public int GetId()
+        {
+            return this.idEmpleado;
+        }
+
+
     }
 }

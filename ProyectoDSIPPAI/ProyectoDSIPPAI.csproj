@@ -80,6 +80,7 @@
     <Compile Include="Clases\Entidades\Entrada.cs" />
     <Compile Include="Clases\Entidades\Exposicion.cs" />
     <Compile Include="Clases\Entidades\IObservadorVisitante.cs" />
+    <Compile Include="Clases\Entidades\IPersistencia.cs" />
     <Compile Include="Clases\Entidades\ISujetoVisitante.cs" />
     <Compile Include="Clases\Entidades\Obra.cs" />
     <Compile Include="Clases\Entidades\ReservaVisita.cs" />
@@ -114,15 +115,19 @@
       <DependentUpon>PantallaVentaEntrada.cs</DependentUpon>
     </Compile>
     <Compile Include="Clases\Gestores\GestorVentaEntrada.cs" />
+    <Compile Include="Clases\Persistencia\DetalleExposicionAD.cs" />
     <Compile Include="Clases\Persistencia\DetalleExposicionPersistente.cs">
       <DependentUpon>ModeloPersistencia.tt</DependentUpon>
     </Compile>
+    <Compile Include="Clases\Persistencia\EmpleadoAD.cs" />
     <Compile Include="Clases\Persistencia\EmpleadoPersistente.cs">
       <DependentUpon>ModeloPersistencia.tt</DependentUpon>
     </Compile>
+    <Compile Include="Clases\Persistencia\EntradaAD.cs" />
     <Compile Include="Clases\Persistencia\EntradaPersistente.cs">
       <DependentUpon>ModeloPersistencia.tt</DependentUpon>
     </Compile>
+    <Compile Include="Clases\Persistencia\ExposicionAD.cs" />
     <Compile Include="Clases\Persistencia\ExposicionPersistente.cs">
       <DependentUpon>ModeloPersistencia.tt</DependentUpon>
     </Compile>
@@ -141,30 +146,38 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModeloPersistencia.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Clases\Persistencia\ObraAD.cs" />
     <Compile Include="Clases\Persistencia\ObraPersistente.cs">
       <DependentUpon>ModeloPersistencia.tt</DependentUpon>
     </Compile>
+    <Compile Include="Clases\Persistencia\ReservaVisitaAD.cs" />
     <Compile Include="Clases\Persistencia\ReservaVisitaPersistente.cs">
       <DependentUpon>ModeloPersistencia.tt</DependentUpon>
     </Compile>
+    <Compile Include="Clases\Persistencia\SedeAD.cs" />
     <Compile Include="Clases\Persistencia\SedePersistente.cs">
       <DependentUpon>ModeloPersistencia.tt</DependentUpon>
     </Compile>
+    <Compile Include="Clases\Persistencia\SesionAD.cs" />
     <Compile Include="Clases\Persistencia\SesionPersistente.cs">
       <DependentUpon>ModeloPersistencia.tt</DependentUpon>
     </Compile>
     <Compile Include="Clases\Persistencia\sysdiagrams.cs">
       <DependentUpon>ModeloPersistencia.tt</DependentUpon>
     </Compile>
+    <Compile Include="Clases\Persistencia\TarifaAD.cs" />
     <Compile Include="Clases\Persistencia\TarifaPersistente.cs">
       <DependentUpon>ModeloPersistencia.tt</DependentUpon>
     </Compile>
     <Compile Include="Clases\Persistencia\TipoDeEntradaPersistente.cs">
       <DependentUpon>ModeloPersistencia.tt</DependentUpon>
     </Compile>
+    <Compile Include="Clases\Persistencia\TipoEntradaAD.cs" />
+    <Compile Include="Clases\Persistencia\TipoVisitaAD.cs" />
     <Compile Include="Clases\Persistencia\TipoVisitaPersistente.cs">
       <DependentUpon>ModeloPersistencia.tt</DependentUpon>
     </Compile>
+    <Compile Include="Clases\Persistencia\UsuarioAD.cs" />
     <Compile Include="Clases\Persistencia\UsuarioPersistente.cs">
       <DependentUpon>ModeloPersistencia.tt</DependentUpon>
     </Compile>

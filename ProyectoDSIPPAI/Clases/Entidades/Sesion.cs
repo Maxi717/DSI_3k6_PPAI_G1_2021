@@ -13,7 +13,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         private TimeSpan horaFin;
         private TimeSpan horaInicio;
         private Usuario usuario;
-
+        private int id;
 
         public Sesion(DateTime fecha_fin, DateTime fecha_inicio, TimeSpan hora_fin, TimeSpan hora_inicio)
         {
@@ -54,5 +54,16 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         {
             return usuario.ObtenerEmpleado();
         }
+
+        public void SetId(int id)
+        {
+            this.id = id;
+        }
+
+        public int GetId()
+        {
+            return this.id;
+        }
+
     }
 }

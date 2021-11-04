@@ -10,6 +10,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
     {
         private string lugarAsignado;
         private Obra obra;
+        
 
         public string GetLugarAsignado()
         {
@@ -35,6 +36,13 @@ namespace ProyectoDSIPPAI.Clases.Entidades
             obra = this.GetObra();
             return obra.GetDuracionResumida();
         }
+
+        public int GetId()
+        {
+            return this.obra.GetCodigoSensor();
+        }
+
+
 
     }
 }

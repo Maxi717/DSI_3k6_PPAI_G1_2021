@@ -17,6 +17,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         private DateTime horaInicioReal;
         private int numeroReserva;
         private Sede sede;
+        private int id;
 
         public ReservaVisita()
         {
@@ -89,6 +90,16 @@ namespace ProyectoDSIPPAI.Clases.Entidades
                 return false;
             }
 
+        }
+
+        public void SetId(int id)
+        {
+            this.id = id;
+        }
+
+        public int GetId()
+        {
+            return this.id;
         }
 
     }

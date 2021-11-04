@@ -20,7 +20,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         private float peso;
         private float valuacion;
         private Empleado empleadoCreo;
-
+        
         public Obra(float alto, float ancho, int codigoSensor, string descripcion, int duracionExtendida, int duracionResumida, DateTime fechaCreacion, DateTime fechaPrimerIngreso, string nombreObra, float peso, float valuacion)
         {
             this.alto = alto;
@@ -98,7 +98,10 @@ namespace ProyectoDSIPPAI.Clases.Entidades
             return duracion;
         }
 
-
+        public int GetCodigoSensor()
+        {
+            return this.codigoSensor;
+        }
 
     }
 }

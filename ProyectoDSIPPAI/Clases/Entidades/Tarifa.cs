@@ -14,7 +14,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         private float montoAdicionalGuia;
         private TipoEntrada tipoEntrada;
         private TipoVisita tipoVisita;
-
+        private int id;
         public void SetFechaFinVigencia(DateTime fechaNueva)
         {
             this.fechaFinVigencia = fechaNueva;
@@ -80,6 +80,16 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         public float GetMonto()
         {
             return this.monto;
+        }
+
+        public void SetId(int id)
+        {
+            this.id = id;
+        }
+
+        public int GetId()
+        {
+            return this.id;
         }
     }
 }

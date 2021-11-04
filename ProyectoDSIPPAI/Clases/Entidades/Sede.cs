@@ -14,7 +14,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         private string nombre;
         private List<Tarifa> tarifas;
         private List<Exposicion> exposiciones;
-
+        private int id;
         public Sede(int cantidadMaximaVisitntes, int cantMaxPorGuia, string nombre, List<Tarifa> tarifas, List<Exposicion> exposiciones)
         {
             this.cantidadMaximaVisitantes = cantidadMaximaVisitntes;
@@ -112,6 +112,16 @@ namespace ProyectoDSIPPAI.Clases.Entidades
 
             return duracionExpoVigentes;
 
+        }
+
+        public void SetId(int id)
+        {
+            this.id = id;
+        }
+
+        public int GetId()
+        {
+            return this.id;
         }
     }
 }

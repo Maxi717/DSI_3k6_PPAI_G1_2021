@@ -17,7 +17,7 @@ namespace ProyectoDSIPPAI.Clases.Entidades
         private string nombre;
         private Empleado empleado;
         private List<DetalleExposicion> detalleExposicion;
-
+        int id;
         public void SetNombre(string unNombre)
         {
             this.nombre = unNombre;
@@ -103,6 +103,16 @@ namespace ProyectoDSIPPAI.Clases.Entidades
             }
 
             return duracion;
+        }
+
+        public void SetId(int id)
+        {
+            this.id = id;
+        }
+
+        public int GetId()
+        {
+            return this.id;
         }
     }
 }
